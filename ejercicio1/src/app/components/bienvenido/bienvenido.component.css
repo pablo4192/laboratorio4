@@ -1,0 +1,20 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 89vh;
+    background-color: rgb(40,45,50);
+}
+
+div>p{
+    font-size: 3rem;
+    color: rgb(32, 218, 141);
+    font-weight: bold;
+}

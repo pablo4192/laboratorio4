@@ -1,0 +1,13 @@
+div{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100vw;
+    height: 89vh;
+}
+
+p{
+    font-size: 2rem;
+    color: rgb(210, 27, 27);
+}

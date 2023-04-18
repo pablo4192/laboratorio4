@@ -1,3 +1,30 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+nav{
+ background-color: darkslateblue;
+ height: 10vh; 
+ display: flex;
+ justify-content: center;
+ align-items: flex-end;
+ margin-bottom: 5px;
+}
+
+nav a{
+    color: #eee;
+    text-decoration: none;
+    font-size: 1.3rem;
+    margin: 5px 10px;  
+}
+
+nav a:hover{
+    color: #fff;
+}
+
 body{
     height: 25vh;
     display: flex;
@@ -5,6 +32,8 @@ body{
     justify-content: space-around;
     align-items: center;
 }
+
+
 
 .inputsEdades{
     border: 1px solid yellow;

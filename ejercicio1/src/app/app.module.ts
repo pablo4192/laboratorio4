@@ -5,6 +5,8 @@ import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './components/login/login.component';
 import { BienvenidoComponent } from './components/bienvenido/bienvenido.component';
 import { ErrorComponent } from './components/error/error.component';
+import { AppRoutingModule } from './app-routing.module';
+import { RegistroComponent } from './components/registro/registro.component';
 
 
 
@@ -14,10 +16,12 @@ import { ErrorComponent } from './components/error/error.component';
     LoginComponent,
     BienvenidoComponent,
     ErrorComponent,
+    RegistroComponent,
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
