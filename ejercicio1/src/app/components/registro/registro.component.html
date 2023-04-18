@@ -1,1 +1,21 @@
-<p>registro works!</p>
+<div class="contenedor">
+    <div class="registro">
+        <div>
+            <label for="nombre">Nombre</label><input type="text" placeholder="Ingrese nombre" name="nombre" [(ngModel)]="usuario.nombre">
+        </div>
+        <div>
+            <label for="apellido">Apellido</label><input type="text" placeholder="Ingrese apellido" name="apellido" [(ngModel)]="usuario.apellido">
+        </div>
+        <div>
+            <label for="mail">Mail</label><input type="text" placeholder="Ingrese mail" name="mail" [(ngModel)]="usuario.mail">
+        </div>
+        <div>
+            <label for="contrasenia">Contraseña</label><input type="text" placeholder="Ingrese contraseña" name="contrasenia"  [(ngModel)]="usuario.contrasenia">
+        </div>
+        <div class="inputs">
+            <input type="button" value="Registrarse" (click)="registrarse()">
+        </div>
+        <small *ngIf="flagError">Error parametros!</small>
+        <small *ngIf="flagExito">Se guardaron los datos en local storage.</small>
+    </div>
+</div>

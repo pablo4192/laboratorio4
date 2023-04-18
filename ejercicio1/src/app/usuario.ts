@@ -1,5 +1,11 @@
 export class Usuario {
     nombre:string|undefined;
-    clave:string|undefined;
+    apellido:string|undefined;
+    mail:string|undefined;
+    contrasenia:string|undefined;
+
+    constructor(){
+        
+    }
 
 }

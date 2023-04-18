@@ -1,1 +1,16 @@
-<p>login works!</p>
+<div class="contenedor">
+    <div class="login">
+        <div>
+            <label for="mail">Mail</label><input type="text" placeholder="Ingrese mail" name="mail" [(ngModel)]="mail">
+        </div>
+        <div>
+            <label for="contrasenia">Contraseña</label><input type="text" placeholder="Ingrese contraseña" name="contrasenia"  [(ngModel)]="contrasenia">
+        </div>
+        <div class="inputs">
+            <input type="button" value="Login" (click)="login()">
+        </div>
+        <small *ngIf="flagError">Error ingrese mail y contraseña!</small>
+        <small *ngIf="flagExito">Se guardaron los datos en local storage.</small>
+    </div>
+</div>
+
