@@ -4,6 +4,18 @@
     padding: 0;
 }
 
+#codigo{
+    position: absolute;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    background-color: #fff;
+    top: 4%;
+    right: 2%;
+    font-weight: bold;
+    text-decoration: none;
+    color: black;
+}
 
 nav{
  background-color: darkslateblue;
@@ -12,6 +24,7 @@ nav{
  justify-content: center;
  align-items: flex-end;
  margin-bottom: 5px;
+ position: relative;
 }
 
 nav a{
