@@ -1,0 +1,22 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+#contenedor{
+    width: 70vw;
+    height: 40vh;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    overflow-x: scroll;
+    padding: 5px 0;
+    
+}
+
+app-tabla-pelicula{
+    display: flex;
+    flex-direction: row;
+    height: 80%;
+}

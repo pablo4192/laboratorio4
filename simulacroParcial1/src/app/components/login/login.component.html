@@ -1,0 +1,12 @@
+<div id="contenedor">
+    <form>
+        <div>
+            <label for="mail">Mail</label><input type="text" name="mail" [(ngModel)]="mail">
+        </div> 
+        <div>   
+            <label for="contrasenia">Contraseña</label><input type="text" name="contrasenia" [(ngModel)]="contrasenia">
+        </div>
+        
+        <input type="button" value="Registrarme" id="registrarse" (click)="ingresar()">
+    </form>
+</div>

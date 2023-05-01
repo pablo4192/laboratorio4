@@ -1,0 +1,21 @@
+<div id="contenedor">
+    <h2>{{titulo}}</h2>
+    <div *ngIf="titulo == 'Detalle pelicula' && pelicula">
+        <div class="dataPelicula">
+            <p>Titulo</p>
+            <p>{{pelicula.nombre}}</p>
+        </div>
+        <div class="dataPelicula">
+            <p>Genero</p>
+            <p>{{pelicula.tipo}}</p>
+        </div>
+        <div class="dataPelicula">
+            <p>Fecha estreno</p>
+            <p>{{pelicula.fechaEstreno | date}}</p>
+        </div>
+        <div class="dataPelicula">
+            <p>Espectadores</p>
+            <p>{{pelicula.cantidadPublico}}</p>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,20 @@
+<div id="contenedor">
+    <form>
+        <div>
+            <label for="nombre">Nombre</label><input type="text" name="nombre" [(ngModel)]="usuario.nombre">
+        </div>
+        <div>
+            <label for="apellido">Apellido</label><input type="text" name="apellido" [(ngModel)]="usuario.apellido">
+        </div>
+        <div>
+            <label for="mail">Mail</label><input type="text" name="mail" [(ngModel)]="usuario.mail">
+        </div> 
+        <div>   
+            <label for="contrasenia">Contraseña</label><input type="text" name="contrasenia" [(ngModel)]="usuario.contrasenia">
+        </div>
+        <div>
+            <label for="confContrasenia">Confirmar contraseña</label><input type="text" name="confContrasenia" [(ngModel)]="confContrasenia"> <!--Hacer validación luego-->
+        </div>
+        <input type="button" value="Registrarme" id="registrarse" (click)="registrar()">
+    </form>
+</div>

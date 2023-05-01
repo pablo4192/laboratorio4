@@ -1,0 +1,12 @@
+<app-nav></app-nav>
+<div id="contenedor">
+    <h2>Listado peliculas</h2>
+    <div>
+        <app-pelicula-listado (peliculaSeleccionada)="asignarSeleccion($event)"></app-pelicula-listado>
+    </div>
+    <div>
+        <app-borrar-pelicula></app-borrar-pelicula>
+        <app-detalle-pelicula [pelicula]="this.peliculaSeleccionada"></app-detalle-pelicula>
+        <app-modificar-pelicula></app-modificar-pelicula>
+    </div>
+</div>
