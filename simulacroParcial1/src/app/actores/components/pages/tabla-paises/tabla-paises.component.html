@@ -1,0 +1,22 @@
+<div id="contenedor">
+    <div>
+        <select [(ngModel)]="continente"> 
+            <option value="all">Todos</option>
+            <option value="america">America</option>
+            <option value="europe">Europa</option>
+            <option value="asia">Asia</option>
+            <option value="oceania">Oceanía</option>
+        </select>
+        <input type="button" value="Filtrar" (click)="filtrarPaises()">
+    </div>
+    <table>
+        <tr *ngFor="let p of paises" id="paises" (click)="emitirPaisSeleccionado(p)">
+            <td>
+                <img src="{{p.flags.svg}}" alt="flag.svg">
+            </td>
+            <td>
+                {{p.name['common']}}
+            </td>
+        </tr>
+    </table>      
+</div>

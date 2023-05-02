@@ -10,7 +10,7 @@ const routes: Routes = [
   {path: 'bienvenido', component: BienvenidoComponent},
   {path: 'registro', component: RegistroComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'busqueda', loadChildren: () => import('./peliculas/peliculas.module').then(m => m.PeliculasModule)},
+  {path: 'peliculas', loadChildren: () => import('./peliculas/peliculas.module').then(m => m.PeliculasModule)},
   {path: '', component: BienvenidoComponent},
   {path: '**', component: ErrorComponent}
 

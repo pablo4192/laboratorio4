@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "simulacroparcial1-2ac42": {
+      "hosting": {
+        "simulacroParcial1": [
+          "simulacroparcial1-2ac42"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "simulacroparcial1-2ac42"
+  }
+}

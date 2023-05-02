@@ -1,0 +1,21 @@
+<div id="contenedor">
+    <form>
+        <h2>Alta Actor</h2>
+        <div class="dataForm">
+            <label for="nombre">Nombre:</label><input type="text" name="nombre" [(ngModel)]="this.actor.nombre">
+        </div>
+        <div class="dataForm">
+            <label for="apellido">Apellido:</label><input type="text" name="apellido" [(ngModel)]="this.actor.apellido">
+        </div>
+        <div class="dataForm">
+            <label for="fechaNac">Fecha nacimiento:</label><input type="text" name="fechaNac" placeholder="aaaa-mm-dd" [(ngModel)]="this.actor.fechaNacimiento">
+        </div>
+        <div class="dataForm">
+            <label for="pais">Pais de origen:</label><input type="text" name="pais" readonly placeholder="Seleccione pais en tabla paises" value="{{this.paisOrigen}}">
+        </div>
+        <div id="confirmar">
+            <input type="button" value="Confirmar alta" (click)="altaActor()">
+        </div>
+    </form>
+    <app-tabla-paises (paisSeleccionado)="manejadorEventoPais($event)"></app-tabla-paises>
+</div>

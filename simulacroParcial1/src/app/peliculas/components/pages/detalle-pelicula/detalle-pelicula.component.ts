@@ -9,4 +9,6 @@ import { Pelicula } from 'src/app/peliculas/entidades/pelicula';
 export class DetallePeliculaComponent {
   @Input() pelicula:Pelicula|undefined;
 
+  
+
 }

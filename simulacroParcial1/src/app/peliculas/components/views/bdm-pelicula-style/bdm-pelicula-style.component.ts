@@ -9,4 +9,5 @@ import { Pelicula } from 'src/app/peliculas/entidades/pelicula';
 export class BdmPeliculaStyleComponent {
   @Input() titulo:string = ''; 
   @Input() pelicula:Pelicula|undefined;
+
 }

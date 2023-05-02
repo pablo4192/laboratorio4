@@ -8,8 +8,8 @@ import { ModificarPeliculaComponent } from './components/pages/modificar-pelicul
 import { PeliculaAltaComponent } from './components/pages/pelicula-alta/pelicula-alta.component';
 import { PeliculaListadoComponent } from './components/pages/pelicula-listado/pelicula-listado.component';
 import { BdmPeliculaStyleComponent } from './components/views/bdm-pelicula-style/bdm-pelicula-style.component';
-import { NavComponent } from './components/views/nav/nav.component';
 import { TablaPeliculaComponent } from './components/views/tabla-pelicula/tabla-pelicula.component';
+import { PeliculasComponent } from './components/views/peliculas/peliculas.component';
 
 @NgModule({
   declarations: [
@@ -20,8 +20,8 @@ import { TablaPeliculaComponent } from './components/views/tabla-pelicula/tabla-
     PeliculaAltaComponent,
     PeliculaListadoComponent,
     BdmPeliculaStyleComponent,
-    NavComponent,
     TablaPeliculaComponent,
+    PeliculasComponent,
   ],
   imports: [
     CommonModule,

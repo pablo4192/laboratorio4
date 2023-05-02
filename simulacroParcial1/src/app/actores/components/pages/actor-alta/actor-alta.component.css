@@ -1,0 +1,62 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+#contenedor{
+    width: 100vw;
+    height: 90vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: #eee;
+}
+
+form{
+    width: 25vw;
+    height: 70vh;
+    margin-right: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+   
+}
+
+.dataForm{
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.dataForm input{
+    width: 75%;
+    height: 30px;
+}
+
+#confirmar{
+    width: 75%;
+    height: 10%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+   
+}
+
+#confirmar>input{
+    width: 170px;
+    height: 35px;
+    border: none;
+    border-radius: 5px;
+    background-color: darkblue;
+    color: #eee;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+#confirmar>input:hover{
+    cursor: pointer;
+    background-color: rgb(1, 1, 224);
+    color: #fff;
+}

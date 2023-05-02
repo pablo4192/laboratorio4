@@ -11,6 +11,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    position: absolute;
+    top: 0;
 }
 
 form{
@@ -50,4 +52,9 @@ form input{
     border-radius: 5px;
     background-color: darkblue;
     color: #eee;
+}
+
+#registrarse:hover{
+    cursor: pointer;
+    background-color: rgb(1, 1, 199);
 }

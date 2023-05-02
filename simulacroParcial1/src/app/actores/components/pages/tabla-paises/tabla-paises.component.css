@@ -1,0 +1,73 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+#contenedor{
+    padding: 15px;
+    box-shadow: 0 0 10px rgba(0,0,0,.3);
+    border-radius: 10px;
+    width: 25vw;
+    height: 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    overflow-y: scroll;
+}
+
+table{
+    background-color: #ddd;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+td{
+    text-align: center;
+    height: 40px;
+    border-bottom: 4px solid #fff;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+tr:hover{
+    cursor: pointer;
+    background-color: #eff;
+}
+
+#paises img{
+    height: 100%;
+    width: 60px;
+}
+
+#contenedor>div:first-child{
+    margin-bottom: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+input{
+    margin-left: 20px;
+    padding: 3px 15px;
+    background-color: rgb(124, 0, 182);
+    color: #fff;
+    font-weight: bold;
+    letter-spacing: 1px;
+    border: none;
+    
+}
+
+input:hover{
+    background-color: rgb(150, 0, 220);
+    cursor: pointer;
+}
+
+select{
+    width: 150px;
+    font-size: 1.1rem;
+    text-align: center;
+}
+
