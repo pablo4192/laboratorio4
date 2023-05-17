@@ -1,0 +1,30 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+#contenedor{
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    height: 60vh;
+    width: 20vw;
+    overflow-y: scroll;
+}
+
+#actor{
+   width: 200px;
+   height: 30px;
+   background-color: #ffe;
+   margin-bottom: 5px;
+}
+
+#actor:hover{
+    cursor: pointer;
+    background-color: #fee;
+}
+
+

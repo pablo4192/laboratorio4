@@ -1,1 +1,99 @@
-<p>registro works!</p>
+<div class="container-fluid">
+    <main class="form-signin"> 
+      <form [formGroup]="formulario" (ngSubmit)="registrarse()" name="Frm" name="frmRegistro" class="formulario">
+        <h1 class="h3 mb-3 fw-normal">Formulario registro</h1> 
+        <small *ngIf="existe" id="existe">El mail ya se encuentra registrado</small>
+        <div class="form-floating">
+          <input type="text" class="form-control" id="txtNombre" placeholder="nombre" name="frmRegistro" formControlName="nombre">
+          <label for="floatingInput">Nombre</label>
+          <small  class="datosInvalidos"
+          *ngIf="formulario.controls.nombre.errors?.required && formulario.controls.nombre.touched">
+          ¡El campo nombre es requerido!
+          </small>
+          <small class="datosInvalidos"
+          *ngIf="formulario.controls.nombre.errors?.spaces && formulario.controls.nombre.touched">
+          ¡El nombre no puede contener espacios!
+          </small>
+          <small class="datosInvalidos"
+          *ngIf="formulario.controls.nombre.errors?.pattern">
+          ¡El nombre debe contener solo letras!
+          </small>
+        </div>
+        <div class="form-floating">
+          <input type="text" class="form-control" id="txtApellido" placeholder="apellido" name="frmRegistro" formControlName="apellido">
+          <label for="floatingInput">Apellido</label>
+          <small  class="datosInvalidos"
+          *ngIf="formulario.controls.apellido.errors?.required && formulario.controls.apellido.touched">
+          ¡El campo apellido es requerido!
+          </small>
+          <small class="datosInvalidos"
+          *ngIf="formulario.controls.apellido.errors?.spaces && formulario.controls.apellido.touched">
+          ¡El apellido no puede contener espacios!
+          </small>
+          <small class="datosInvalidos"
+          *ngIf="formulario.controls.apellido.errors?.pattern">
+          ¡El apellido debe contener solo letras!
+          </small>
+        </div>
+        <div class="form-floating">
+          <input type="text" class="form-control" id="txtEdad" placeholder="Edad" name="frmRegistro" formControlName="edad">
+          <label for="floatingInput">Edad</label>
+          <small class="datosInvalidos"
+          *ngIf="formulario.controls.edad.errors?.required && formulario.controls.edad.touched">
+          ¡El campo edad es requerido!
+          </small>
+          <small class="datosInvalidos"
+          *ngIf="formulario.controls.edad.errors?.pattern">
+          ¡El campo edad debe ser numerico mayor a 1 y menor a 99 años!
+          </small>
+        </div>
+        <div class="form-floating">
+          <input type="email" class="form-control" id="txtEmail" placeholder="Email" name="frmRegistro" formControlName="mail">
+          <label for="floatingInput">Email</label>
+          <small class="datosInvalidos"
+          *ngIf="formulario.controls.mail.errors?.required && formulario.controls.mail.touched">
+          ¡El campo mail es requerido!
+          </small>
+          <small class="datosInvalidos"
+          *ngIf="formulario.controls.mail.errors?.email && formulario.controls.mail.touched">
+          ¡El mail debe ser valido (name@example.com)!
+          </small>
+          <small class="datosInvalidos"
+          *ngIf="formulario.controls.mail.errors?.spaces">
+          ¡El mail no puede contener espacios!
+          </small>
+        </div>
+        <div class="form-floating">
+          <input type="password" class="form-control" id="txtContrasenia" placeholder="Contraseña" name="frmRegistro" formControlName="contrasenia">
+          <label for="floatingPassword">Contraseña</label>
+          <small class="datosInvalidos"
+          *ngIf="formulario.controls.contrasenia.errors?.required && formulario.controls.contrasenia.touched">
+          ¡El campo contraseña es requerido!
+          </small>
+          <small class="datosInvalidos"
+          *ngIf="formulario.controls.contrasenia.errors?.spaces && formulario.controls.contrasenia.touched">
+          ¡La contraseña no puede contener espacios!
+          </small>
+        </div>
+        <div class="form-floating">
+            <input type="password" class="form-control" id="txtVerContrasenia" placeholder="Confirmar contraseña" name="frmRegistro" formControlName="verifContra">
+            <label for="floatingPassword">Confirmar Contraseña</label>
+            <small class="datosInvalidos"
+            *ngIf="formulario.controls.verifContra.errors?.required && formulario.controls.verifContra.touched">
+            ¡Verificar la contraseña es requerido!
+            </small>
+            <small class="datosInvalidos"
+            *ngIf="formulario.controls.verifContra.value != formulario.controls.contrasenia.value">
+            ¡La contraseña no coincide!
+            </small>
+          </div>
+        <button class="btn btn-lg btn-primary" type="submit" 
+                [disabled]="formulario.invalid ||
+                formulario.controls.verifContra.value != formulario.controls.contrasenia.value">
+        Registrarme
+        </button>
+      </form> 
+    </main>
+    
+  </div>
+

@@ -1,1 +1,34 @@
-<p>pelicula-alta works!</p>
+<div id="contenedor">
+    <form>
+        <h2>Alta Pelicula</h2>
+        <div class="dataForm">
+            <label for="nombre">Nombre:</label><input type="text" name="nombre" >
+        </div>
+        <div class="dataForm">
+            <label for="tipo">Tipo</label>
+            <select name="tipo">
+                <option value="" hidden></option>
+                <option value="">Amor</option>
+                <option value="">Terror</option>
+                <option value="">Comedia</option>
+                <option value="">Otros</option>
+            </select>
+        </div>
+        <div class="dataForm">
+            <label for="fechaEstreno">Fecha estreno:</label><input type="text" name="fechaEstreno" placeholder="aaaa-mm-dd" >
+        </div>
+        <div class="dataForm">
+            <label for="publico">Cantidad publico:</label><input type="number" name="publico">
+        </div>
+        <div class="dataForm">
+            <label for="actor">Actor:</label><input type="text" name="actor" value='{{this.actorSeleccionado?.nombre}} {{this.actorSeleccionado?.apellido}}' readonly placeholder="Escoja actor de tabla actores">
+        </div>
+        <div class="dataForm" style="background-color: #eff;">
+            Cargar imagen pelicula en construccion...
+        </div>
+        <div id="confirmar">
+            <input type="button" value="Confirmar alta">
+        </div>
+    </form>
+    <app-tabla-actores [actores]="this.actores" (actorSeleccionado)="manejarEventoActor($event)"></app-tabla-actores>
+</div>

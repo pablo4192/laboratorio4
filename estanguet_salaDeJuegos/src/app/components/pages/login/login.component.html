@@ -1,1 +1,45 @@
-<p>login works!</p>
+<div class="container-fluid">
+    <main class="form-signin"> 
+      <form [formGroup]="formulario" (ngSubmit)="ingresar()" name="Frm" class="formulario" autocomplete="off">
+        <h1 class="h3 mb-3 fw-normal">Login</h1>
+        <small *ngIf="noExiste" id="noExiste">
+          ¡Usuario no encontrado en nuestros registros!   
+        </small>
+        <div class="form-floating">
+          <input #inputUsr type="email" class="form-control" id="floatingInput" placeholder="name@example.com" formControlName="usuario" name="Frm">  
+          <label for="floatingInput">Usuario</label>
+          <small class="datosInvalidos" 
+            *ngIf="formulario.controls.usuario.errors?.required &&
+                   formulario.controls.usuario.touched">
+            ¡El usuario es requerido!
+          </small>
+          <small class="datosInvalidos" 
+            *ngIf="formulario.controls.usuario.errors?.email && 
+                   formulario.controls.usuario.touched">
+            ¡El usuario debe ser un mail valido!
+          </small>
+        </div>
+        <div class="form-floating">
+          <input #inputPass type="password" class="form-control" id="floatingPassword" placeholder="Password" formControlName="contrasenia" name="Frm">  
+          <label for="floatingPassword">Contraseña</label>
+          <small class="datosInvalidos" 
+          *ngIf="formulario.controls.contrasenia.errors?.required && 
+                 formulario.controls.contrasenia.touched">
+          ¡La contraseña es requerida!
+          </small>
+          <small class="datosInvalidos"
+          *ngIf="formulario.controls.contrasenia.errors?.spaces">
+          ¡La contraseña no puede contener espacios!
+          </small>
+        </div>
+        <input type="submit" value="Ingresar" class="btn btn-lg btn-primary" [disabled]="!autoCompletado && formulario.invalid">
+        <div (click)="AutoCompletarLogin()" class="ingresoRapido btn btn-lg btn-primary">Ingreso rapido</div>
+      </form>
+    </main>
+  </div>
+  
+    
+    
+    
+    
+  

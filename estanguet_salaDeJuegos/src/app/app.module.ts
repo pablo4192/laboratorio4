@@ -7,6 +7,13 @@ import { BienvenidoComponent } from './components/views/bienvenido/bienvenido.co
 import { LoginComponent } from './components/pages/login/login.component';
 import { RegistroComponent } from './components/pages/registro/registro.component';
 import { QuienSoyComponent } from './components/views/quien-soy/quien-soy.component';
+import { NavComponent } from './components/views/nav/nav.component';
+import { LogoutComponent } from './components/views/logout/logout.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { environment } from '../environments/environment';
+import { provideAuth,getAuth } from '@angular/fire/auth';
+import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 
 @NgModule({
   declarations: [
@@ -14,11 +21,18 @@ import { QuienSoyComponent } from './components/views/quien-soy/quien-soy.compon
     BienvenidoComponent,
     LoginComponent,
     RegistroComponent,
-    QuienSoyComponent
+    QuienSoyComponent,
+    NavComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideAuth(() => getAuth()),
+    provideFirestore(() => getFirestore())
   ],
   providers: [],
   bootstrap: [AppComponent]

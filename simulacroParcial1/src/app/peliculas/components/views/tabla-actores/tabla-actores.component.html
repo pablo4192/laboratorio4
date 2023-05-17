@@ -1,0 +1,6 @@
+
+<div id="contenedor">
+    <div id="actor" *ngFor="let a of actores" (click)="emitirActor(a)">
+        {{a.nombre}} {{a.apellido}}
+    </div>
+</div>

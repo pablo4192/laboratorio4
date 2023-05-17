@@ -14,7 +14,7 @@ import { FormsModule } from '@angular/forms';
     ActorAltaComponent,
     ActorListadoComponent,
     ActorComponent,
-    TablaPaisesComponent
+    TablaPaisesComponent,
   ],
   imports: [
     CommonModule,

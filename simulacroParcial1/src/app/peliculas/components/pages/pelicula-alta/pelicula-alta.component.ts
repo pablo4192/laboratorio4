@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Actor } from 'src/app/actores/entidades/actor';
 import { Pelicula } from 'src/app/peliculas/entidades/pelicula';
 import { TipoPelicula } from 'src/app/peliculas/enums/tipo-pelicula';
 import { FirestoreService } from 'src/app/services/firestore.service';
@@ -10,11 +11,19 @@ import { FirestoreService } from 'src/app/services/firestore.service';
 })
 export class PeliculaAltaComponent {
 
+  actores:Actor[] = [];
+  actorSeleccionado:Actor|undefined;
+
   constructor(private fs:FirestoreService){
 
   }
 
   ngOnInit():void{
+    this.fs.getActores().subscribe((a) => {
+      this.actores = a;   //Ver si hay que desuscribir
+      
+    });
+
     //this.altaPelicula();
   }
 
@@ -24,5 +33,10 @@ export class PeliculaAltaComponent {
     // this.fs.addPelicula(new Pelicula('Que paso ayer', TipoPelicula.Comedia, '2010-9-15', 200000, './assets/posters/quePasoAyer.jpg'));
     // this.fs.addPelicula(new Pelicula('Diario de una pasion', TipoPelicula.Amor, '2000-4-5', 150000, './assets/posters/diarioDeUnaPasion.jpg'));
     // this.fs.addPelicula(new Pelicula('Babylon', TipoPelicula.Otros, '2022-11-26', 300000, './assets/posters/babylon.jpg'));
+  }
+
+  manejarEventoActor($event:Actor):void{
+    this.actorSeleccionado = $event;
+    console.log(this.actorSeleccionado);
   }
 }

@@ -1,0 +1,88 @@
+
+.container-fluid{
+    margin-top: 20px;
+    min-height: 70vh; 
+    padding: 0;
+  }
+  
+  .form-signin{
+    min-height: 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  h1{
+    color: #eee;
+    text-shadow: 0 0 10px rgba(250,250,250,.8);
+  }
+  
+  .formulario{
+    background-image: url('./../../../../assets/img/fondoLogin.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    width: 100%;
+    min-height: 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  .form-floating{
+    width: 35%;
+    margin: 10px;
+  }
+  
+  form>input{
+    margin-top: 15px;
+    width: 25%;
+  }
+  
+  .datosInvalidos{
+    
+    color: #fff;
+    display: block;
+    width: 100%;
+    text-align: start;
+  }
+
+  #noExiste{
+    color: tomato;
+    font-size: 1.1rem;
+  }
+  
+  .ingresoRapido{
+    background-color: #1E88E5;
+    color: #fff;
+    font-size: 1.2rem;
+    margin-top: 10px;
+    width: 25%;
+    padding: 10px 5px;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+  
+  @media screen and (max-width:1200px){
+    .form-floating{
+      width: 60%;
+    }
+  
+    form>input, .ingresoRapido{
+      width: 50%;
+    }
+  }
+  
+  @media screen and (max-width:768px){
+    .form-floating{
+      width: 90%;
+    }
+  
+    form>input, .ingresoRapido{
+      width: 80%;
+    }
+  }
+  

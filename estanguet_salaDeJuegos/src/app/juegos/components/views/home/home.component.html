@@ -1,1 +1,66 @@
-<p>home works!</p>
+<div class="container-fluid" id="contenedor">
+    <div class="row">
+        <a routerLink="ahorcado">
+            <div class="divJuego"> 
+            <div class="col-0 col-sm-4">
+                    <img src="./../../../../../assets/img_ahorcado/ahorcado_icono2-removebg-preview.png" alt="ahorcado_icon" class="imagenes">
+                </div>
+                <div class="col-12 col-sm-8 descripcion-juego">
+                    <p id="ahorcado">AHORCADO</p> 
+                    <p>
+                        Tienes 60 segundos para descubrir la palabra oculta. Pero a no desesperarse, 
+                        te daremos alguna que otra pista para ayudarte a salvar a esta persona de su terrible destino.
+                    </p>
+                </div> 
+            </div>
+        </a>
+        <a routerLink="mayor-menor">
+        <div class="divJuego">
+            <div class="col-0 col-sm-4">
+                <img src="./../../../../../assets/img_mayor-menor/naipes.jpg" alt="imgNaipes" class="imagenes" >
+            </div>
+            <div class="col-12 col-sm-8 descripcion-juego">
+                <p id="mayorMenor">MAYOR MENOR</p> 
+                <p>
+                    El objetivo es adivinar si el valor de la próxima carta es mayor o menor. 
+                    Puedes arriesgarte a adivinar hasta el final de la partida o retirarte con los puntos que hayas logrado.
+                </p>
+            </div>
+        </div>
+        </a>
+    </div>
+    <div class="row">
+        <a routerLink="preguntados">
+            <div class="divJuego">
+                <div class="col-0 col-sm-4">
+                    <img src="./../../../../../assets/img_preguntados/preguntados-removebg-preview.png" alt="imgPreguntados" class="imagenes">
+                </div>
+                <div class="col-12 col-sm-8 descripcion-juego">
+                    <p id="preguntados">PREGUNTADOS</p> 
+                    <p>
+                        El exitoso juego de preguntas y respuestas en una versión especial para ti.
+                        Gira la ruleta y responde sobre distintas categorías.
+                        Tienes 3 intentos para responder 10 preguntas correctamente y sumar puntos a tu acumulado.
+                    </p>
+                </div>
+            </div>
+        </a>
+        <a routerLink="juego-propio">
+            <div class="divJuego">
+                <div class="col-0 col-sm-4 ">
+                    <img src="./../../../../../assets/img_juegoPropio/planetaTierra.png" alt="imgJuegoPropio" class="imagenes">
+                </div>
+                <div class="col-12 col-sm-8 descripcion-juego">
+                    <p id="juegoPropio">DESTRUCTOR DE METEORITOS</p> 
+                    <p>
+                        Tu misión es simple, salvar al planeta tierra y los seres vivos que habitan en él.
+                        Haciendo click sobre los objetivos destruye tantos meteoritos como te sea posible.
+                        Un detalle, por ningún motivo dejes que el último meteorito impacte.
+                    </p>
+                </div>
+            </div>
+        </a>
+    </div>    
+</div>
+
+<router-outlet></router-outlet>

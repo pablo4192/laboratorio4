@@ -1,0 +1,12 @@
+<div class="container-fluid">
+    <div class="fila">
+        <div class="columnaDatos">
+            <p>Usuario en sesion: {{ls.usuario?.mail}}</p>
+            <p>Puntaje acumulado: {{ls.usuario?.puntaje_acumulado}}</p>
+        </div>
+        <div class="columnaInput">
+            <input type="button" value="Logout" (click)="logout()">
+        </div>
+    </div> 
+</div>
+

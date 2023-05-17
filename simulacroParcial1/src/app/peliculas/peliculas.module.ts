@@ -10,6 +10,8 @@ import { PeliculaListadoComponent } from './components/pages/pelicula-listado/pe
 import { BdmPeliculaStyleComponent } from './components/views/bdm-pelicula-style/bdm-pelicula-style.component';
 import { TablaPeliculaComponent } from './components/views/tabla-pelicula/tabla-pelicula.component';
 import { PeliculasComponent } from './components/views/peliculas/peliculas.component';
+import { TablaActoresComponent } from './components/views/tabla-actores/tabla-actores.component';
+
 
 @NgModule({
   declarations: [
@@ -22,6 +24,8 @@ import { PeliculasComponent } from './components/views/peliculas/peliculas.compo
     BdmPeliculaStyleComponent,
     TablaPeliculaComponent,
     PeliculasComponent,
+    TablaActoresComponent,
+    
   ],
   imports: [
     CommonModule,

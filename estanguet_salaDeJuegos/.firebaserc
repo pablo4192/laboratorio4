@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "estanguet-saladejuegos"
+  },
+  "targets": {
+    "estanguet-saladejuegos": {
+      "hosting": {
+        "estanguet_salaDeJuegos": [
+          "estanguet-saladejuegos"
+        ]
+      }
+    }
   }
 }

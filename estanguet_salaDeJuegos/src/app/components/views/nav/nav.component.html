@@ -1,0 +1,18 @@
+<div class="container-fluid row">
+    <div class="titulo col-12 col-xl-6">
+        <a routerLink="**">SALA DE JUEGOS</a> 
+    </div>
+    <div class="secciones col-12 col-xl-6">
+        <nav *ngIf="!getLogueado()">
+            <a routerLink="registro">Registrarse</a>
+            <a routerLink="login">Ingresar</a>
+            <a routerLink="quienSoy">Quien soy</a>
+        </nav> 
+         <nav *ngIf="getLogueado()">
+            <a routerLink="home">Juegos</a>
+            <a routerLink="chat">Chat</a>
+            <a routerLink="puntajes">Puntajes</a>
+        </nav>
+    </div>
+    <app-logout *ngIf="getLogueado()" id="logout"></app-logout> 
+</div>
