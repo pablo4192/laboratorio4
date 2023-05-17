@@ -1,1 +1,28 @@
-<p>chat works!</p>
+<div class="container-fluid row contenedor">  
+    <div class="col-0 col-xl-2 aside">
+        <p>Usuarios conectados:</p>
+    </div> 
+    <div class="col-12 col-xl-10 chat" #chat> 
+        <div *ngFor="let chat of this.chats" id="mensaje" [ngStyle]="{position: chat.position, left: chat.left}">
+            <p id="pFecha">{{chat.mailUsr}} [{{ chat.fecha | date:'dd/MM/yyy h:mm:ss a'}}]</p>
+            <p [ngStyle]="{'background-color': chat.color}">{{chat.texto}}</p>
+        </div>
+    </div>
+    <div class="row divRow">
+        <div class="col-0 col-md-2 bajoAside">
+                <p id="pChat">Escribe algo...</p>
+        </div>
+        <div class="col-8 col-md-9 txtMsj">
+            <input type="text" [(ngModel)]="textoMsj" placeholder="Escribe tu mensaje">
+        </div>
+        <div class="col-4 col-md-1 divBtnEnviar">
+            <input type="button" value="Enviar" (click)="EnviarMsj()">
+        </div>
+    </div> 
+</div>
+
+
+
+
+
+

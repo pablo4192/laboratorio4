@@ -9,6 +9,8 @@ import { PreguntadosComponent } from './components/pages/preguntados/preguntados
 import { JuegosPropioComponent } from './components/pages/juegos-propio/juegos-propio.component';
 import { ChatComponent } from './components/pages/chat/chat.component';
 import { PuntajesComponent } from './components/views/puntajes/puntajes.component';
+import { FormsModule } from '@angular/forms';
+import { TecladoComponent } from './components/views/teclado/teclado.component';
 
 
 @NgModule({
@@ -20,10 +22,12 @@ import { PuntajesComponent } from './components/views/puntajes/puntajes.componen
     JuegosPropioComponent,
     ChatComponent,
     PuntajesComponent,
+    TecladoComponent,
   ],
   imports: [
     CommonModule,
-    JuegosRoutingModule
+    JuegosRoutingModule,
+    FormsModule
   ]
 })
 export class JuegosModule { }

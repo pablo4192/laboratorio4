@@ -1,1 +1,16 @@
-<p>mayor-menor works!</p>
+<div class="contenedor" > 
+    <div id="puntaje">Puntaje parcial: {{puntaje}}</div> 
+    <div class="row" id="divCartas" #divCartasRef>
+        <img *ngFor="let card of cartas" src="{{card}}" alt="imgCarta" id="imgCarta">
+    </div>
+    <div class="controles">
+        <p>Escoge una opción</p>
+        <div id="divControles">
+            <input type="button" value="Mayor" (click)="darCarta('Mayor')">
+            <input type="button" value="Menor" (click)="darCarta('Menor')">
+            <input type="button" value="Retirarse" (click)="retirarse()">
+        </div>
+    </div>
+</div>
+
+

@@ -1,0 +1,27 @@
+.container{
+    font-size: 1.5rem;
+    width: 80vw;
+}
+
+.container div{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+input{
+    margin: 2px;
+    width: 10%;
+    background-color: #ECEFF1 ;
+    border: 4px solid white;
+    border-radius: 5px;
+    font-style: italic;
+    font-weight: bold;
+}
+
+input:hover{
+    background-color: #FAFAFA;
+}
+

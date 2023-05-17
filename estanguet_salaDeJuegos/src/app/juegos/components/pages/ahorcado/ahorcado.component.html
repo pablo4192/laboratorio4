@@ -1,1 +1,30 @@
-<p>ahorcado works!</p>
+<div class="container-fluid contenedorPrincipal">
+    <div class="row divAhorcado"> 
+        <div class="col-12 col-sm-4 imgAhorcado"> 
+            <img src={{rutaImgAhorcado}} alt="ahorcado0.jpg">
+        </div>
+        <div class="col-12 col-sm-8 columnaPalabra"> 
+            <div id="divTimer">
+                <img src="./../../../../../assets/img_ahorcado/timer.png" class="img-fluid" alt="imgTimer">
+                <p>00:00:{{timer}}</p> 
+            </div>
+            <div id="divInfoPalabra">
+                <p>Escogé una letra, si se dificulta te puedo ayudar...</p>
+                <p *ngFor="let pista of this.pistas">Pista: {{pista}}</p>
+            </div>
+            <div id="divPalabra">
+                <p>{{incognita}}</p>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid" id="divControles">
+        <div class="row">
+            <div class="col">
+                <app-teclado (valorBoton)="controlarEventoTeclado($event)"></app-teclado>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

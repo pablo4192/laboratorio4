@@ -1,0 +1,253 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.divBtnFiltrar{
+    margin-top: 20px;
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 5px;
+    
+}
+
+.divBtnFiltrar>div{
+    width: 250px;
+    background-color: rgb(34, 35, 48);
+    color: #fff;
+    font-weight: bold;
+    letter-spacing: 2px;
+    padding: 8px 5px;
+   
+    position: relative;
+}
+
+.divBtnFiltrar>div::after{
+    content: "";
+    display: block;
+    width: 0;
+    height: 2px;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    background-color: gold;
+    box-shadow: 0 -38px 0 gold;
+    transition: all .3s;
+}
+
+.divBtnFiltrar>div:hover{
+    text-shadow: 0 0 10px rgba(255, 255, 255,.5);
+    cursor: pointer;
+}
+
+.divBtnFiltrar>div:hover::after{
+    width: 100%;
+    left: 0;
+    transition: all .3s;
+}
+
+.filtroChat{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(254, 254, 172);
+    margin-bottom: 5px;
+   
+}
+
+.filtroChat>p{
+    margin-right: 10px;
+    letter-spacing: 2px;
+}
+
+.filtroChat input{
+    margin-left: 10px;
+    width: 100px;
+    background-color: darkslateblue;
+    color: #fff;
+    font-weight: bold;
+    letter-spacing: 2px;
+    border: 1px solid black;
+}
+
+.filtroChat input:hover{
+    background-color: rgb(55, 43, 137);
+}
+
+select{
+    width: 60px;
+}
+
+.contenedor{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 100%;
+    height: 90vh;
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.chat{
+    height: 95%;
+    overflow-y: scroll; 
+    border: 4px solid #fff;
+    padding: 20px 10px 100px 10px; 
+    background-color: rgb(40,40,60);
+}
+
+.chat::-webkit-scrollbar{
+    width: 12px;
+    background-color: rgb(245, 245, 245);
+}
+
+.chat::-webkit-scrollbar-track{
+   background-color: #eee;
+  
+}
+
+.chat::-webkit-scrollbar-thumb{
+    border-radius: 5px;
+    background-color: rgba(0, 0, 139,.8 );
+}
+
+.aside{
+    background-color: rgb(34, 35, 48);
+    color: #eee;
+    font-size: large;
+    height: 95%;
+    border: 4px solid #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 10px;
+    line-height: 30px;
+}
+
+.aside>p{
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px rgba(255, 255, 255,.5);
+    border-bottom: 2px #fff solid;
+    
+}
+
+.divRow{
+    height: 5%;
+   
+}
+
+.bajoAside{
+ background-color: rgb(103, 5, 189);
+ border-right: 4px solid #fff;
+ border-left: 4px solid #fff;
+ font-weight: bold;
+ letter-spacing: 2px;
+ color: #fff;
+}
+
+.txtMsj input{
+    width: 100%;
+    height: 100%;
+    margin-left: 2px;
+    padding-left: 10px;
+}
+
+.divBtnEnviar input{
+    width: 96%;
+    height: 100%;
+    border: none;
+    background-color: orangered;
+    color: #fff;
+    font-size: large;
+    font-weight: bold;
+}
+
+.divBtnEnviar input:hover{
+    background-color: orange; 
+}
+
+
+#pChat{
+   
+    font-style: italic;
+}
+
+#mensaje{
+    border-radius: 0 5px 5px 5px;
+    width: fit-content;
+    max-width: 45%;
+    word-wrap: break-word;
+    margin: 10px;
+    position: relative;
+    color: black;
+    box-shadow: -3px 3px 15px #166db9;
+}
+
+#mensaje::before{
+    content: "";
+    width: 0;
+    height: 0;
+    position: absolute;
+    top: 0;
+    left: -29px;
+    border: 15px transparent solid;
+    border-right-color: #166db9;
+}
+
+#mensaje p{
+    padding: 5px 10px;
+    letter-spacing: 1px;
+    font-weight: bold;
+    text-align: start;
+    font-size: 1rem;
+}
+
+#pFecha{
+    font-size: small;
+    border-radius: 0 5px 0 0;
+    width: 100%;
+    background-color: #166db9;
+    color: #eee;
+}
+
+@media screen and (max-width:1200px){
+    .aside{
+        display: none;
+    }
+
+    #mensaje p{
+        font-size: .7rem;
+    }
+}
+
+@media screen and (max-width:768px){
+    .bajoAside{
+        display: none;
+    }
+
+    .filtroChat{
+        height: 20vh;
+        padding: 5px 0;
+        flex-direction: column;
+        justify-content: space-between;
+    } 
+
+    
+}
+
+@media screen and (max-width:576px){
+    
+    #mensaje{
+        max-width: 80%;
+    }
+}
+
+
+

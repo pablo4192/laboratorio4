@@ -1,0 +1,105 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.contenedorPrincipal{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.divAhorcado{
+    width: 100%;
+    height: 65vh;
+    border-right: 5px solid white;
+    border-left: 5px solid white;
+    
+}
+
+ .imgAhorcado{
+    height: 100%;
+} 
+
+.imgAhorcado img{
+    height: 100%;
+    width: 100%;
+    border: 1px solid black;
+}
+
+#divTimer{
+    height: 35%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    border: 1px solid black;
+}
+
+#divTimer p{
+    font-size: 4rem;
+    font-weight: bolder;
+}
+
+#divTimer img{
+    height: 90%;
+}
+
+#divInfoPalabra{
+    height: 35%;
+    padding: 5px 10px;
+    background-color: #455A64 ;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    text-align: start;
+    border-right: 1px solid black;
+}
+
+#divInfoPalabra p:first-child{
+    color: #FFF;
+}
+
+#divInfoPalabra p{
+    font-size: 1rem;
+    letter-spacing: 2px;
+    color: yellow;
+}
+
+#divPalabra{
+    height: 30%;
+    font-size: 5rem;
+    font-weight: bold;
+    letter-spacing: 30px;
+    background-color: #FFFDE7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+}
+
+#divControles{
+    background-color: #8E44AD;
+    border-right: 5px solid #fff;
+    border-left: 5px solid #fff;
+    padding: 10px;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+   
+}
+
+
+
+
+
+
+
+
+
+
+
+
