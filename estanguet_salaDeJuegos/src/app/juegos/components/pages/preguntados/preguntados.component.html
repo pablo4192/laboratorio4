@@ -1,1 +1,25 @@
-<p>preguntados works!</p>
+<div class="contenedor">
+    <app-modal-fin-de-juego *ngIf="this.abrirModalFinDeJuego" [victoria]="this.victoria" [puntos]="this.puntajePorVictoria" (reiniciarJuego)="reiniciar()"> 
+    </app-modal-fin-de-juego>
+    <p>Gira la ruleta haciendo click en ella</p> 
+    <img src="./../../../../assets/img_preguntados/mano.png" alt="mano.png" id="mano" *ngIf="!detenerMano">
+    <img src="./../../../../assets/img_preguntados/ruleta.png" id="ruleta" alt="ruleta.png" #ruleta (click)="girarRuleta()">
+    <audio *ngIf="ruletaGirando" autoplay src="./../../../../assets/img_preguntados/sonidoRuleta.mp3"></audio>
+    <app-modal-pregunta 
+        *ngIf="abrirModal" 
+        [categoria]="categoriaPregunta" 
+        [urlImg]="urlImagen"  
+        [pregunta]="preguntaSeleccionada"
+        (cerrarModalPadre)="manejarEventoModal($event)">
+    </app-modal-pregunta>
+    <app-modal-categorias 
+        *ngIf="abrirModalCategoria" 
+        (categoriaSeleccionada)="manejarEventoCategoria($event)">
+    </app-modal-categorias>
+    <div class="intentos">
+        <p>Cantidad de intentos: {{intentos}}</p>
+        <div class="progreso" #divProgreso>
+        </div>
+    </div> 
+</div>
+

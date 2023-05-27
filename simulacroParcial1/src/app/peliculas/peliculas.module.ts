@@ -11,6 +11,7 @@ import { BdmPeliculaStyleComponent } from './components/views/bdm-pelicula-style
 import { TablaPeliculaComponent } from './components/views/tabla-pelicula/tabla-pelicula.component';
 import { PeliculasComponent } from './components/views/peliculas/peliculas.component';
 import { TablaActoresComponent } from './components/views/tabla-actores/tabla-actores.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { TablaActoresComponent } from './components/views/tabla-actores/tabla-ac
   ],
   imports: [
     CommonModule,
-    PeliculasRoutingModule
+    PeliculasRoutingModule,
+    FormsModule
   ]
 })
 export class PeliculasModule { }

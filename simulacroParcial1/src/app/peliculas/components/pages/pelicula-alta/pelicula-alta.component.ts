@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { Actor } from 'src/app/actores/entidades/actor';
 import { Pelicula } from 'src/app/peliculas/entidades/pelicula';
-import { TipoPelicula } from 'src/app/peliculas/enums/tipo-pelicula';
 import { FirestoreService } from 'src/app/services/firestore.service';
+
 
 @Component({
   selector: 'app-pelicula-alta',
@@ -13,9 +13,13 @@ export class PeliculaAltaComponent {
 
   actores:Actor[] = [];
   actorSeleccionado:Actor|undefined;
+  event:any;
+  pelicula:Pelicula;
+  altaExitosa:boolean = false;
+
 
   constructor(private fs:FirestoreService){
-
+    this.pelicula = new Pelicula();
   }
 
   ngOnInit():void{
@@ -24,19 +28,35 @@ export class PeliculaAltaComponent {
       
     });
 
-    //this.altaPelicula();
   }
 
   altaPelicula():void{
-    // this.fs.addPelicula(new Pelicula('Robocop', TipoPelicula.Otros, '1980-4-5', 100000, './assets/posters/robocop.jpg'));
-    // this.fs.addPelicula(new Pelicula('It', TipoPelicula.Terror, '1986-8-25', 400000, './assets/posters/it.jpg'));
-    // this.fs.addPelicula(new Pelicula('Que paso ayer', TipoPelicula.Comedia, '2010-9-15', 200000, './assets/posters/quePasoAyer.jpg'));
-    // this.fs.addPelicula(new Pelicula('Diario de una pasion', TipoPelicula.Amor, '2000-4-5', 150000, './assets/posters/diarioDeUnaPasion.jpg'));
-    // this.fs.addPelicula(new Pelicula('Babylon', TipoPelicula.Otros, '2022-11-26', 300000, './assets/posters/babylon.jpg'));
+    this.pelicula.actor = this.actorSeleccionado;
+
+    this.fs.uploadImg(this.event.target.files[0])
+    .then((response) => {
+      this.pelicula.img = response.metadata.fullPath;
+      this.fs.addPelicula(this.pelicula);
+      
+      this.reiniciar();
+      
+      this.altaExitosa = true;
+      setTimeout(() => {
+        this.altaExitosa = false;
+      }, 2000);
+    })
+    .catch((error) => console.log(error));
   }
 
   manejarEventoActor($event:Actor):void{
     this.actorSeleccionado = $event;
     console.log(this.actorSeleccionado);
+  } 
+
+  private reiniciar():void{
+    this.actorSeleccionado = undefined;
+    this.pelicula = new Pelicula();
+    this.event = undefined;
   }
+
 }

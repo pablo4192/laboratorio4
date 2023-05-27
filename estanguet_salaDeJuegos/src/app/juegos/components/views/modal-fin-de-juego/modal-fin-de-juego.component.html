@@ -1,0 +1,33 @@
+<dialog #dialogRef>
+    <div id="victoria" *ngIf="this.victoria">
+        <div class="imagen">
+            <img src="./../../../../../assets/img_memes/fort.webp" alt="fort.webp">
+        </div>
+        <div class="texto">
+            <div>
+                <p>Has Ganado!!</p>
+            </div>
+            <div >
+                <p>Has sumado {{this.puntos}} puntos a tu puntaje acumulado.
+                Deseas Iniciar una nueva partida?</p>
+            </div>
+        </div>
+    </div>
+    <div id="derrota" *ngIf="!this.victoria">
+        <div class="imagen">
+            <img src="./../../../../../assets/img_memes/miradaConan.jpg" alt="miradaConan.webp">
+        </div>
+        <div class="texto">
+            <div>
+                <p>Has Perdido</p>
+            </div>
+            <div>
+                <p>Deseas Iniciar una nueva partida?</p>
+            </div>
+        </div>   
+    </div>
+    <div class="inputs">
+        <input type="button" value="Salir" (click)="salir()">
+        <input type="button" value="Reiniciar partida" (click)="reiniciar()">
+    </div>
+</dialog>

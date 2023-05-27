@@ -11,6 +11,11 @@ import { ChatComponent } from './components/pages/chat/chat.component';
 import { PuntajesComponent } from './components/views/puntajes/puntajes.component';
 import { FormsModule } from '@angular/forms';
 import { TecladoComponent } from './components/views/teclado/teclado.component';
+import { ModalPreguntaComponent } from './components/views/modal-pregunta/modal-pregunta.component';
+import { ModalCategoriasComponent } from './components/views/modal-categorias/modal-categorias.component';
+import { ColorCategoriaDirective } from '../directives/color-categoria.directive';
+import { ModalFinDeJuegoComponent } from './components/views/modal-fin-de-juego/modal-fin-de-juego.component';
+
 
 
 @NgModule({
@@ -23,6 +28,10 @@ import { TecladoComponent } from './components/views/teclado/teclado.component';
     ChatComponent,
     PuntajesComponent,
     TecladoComponent,
+    ModalPreguntaComponent,
+    ModalCategoriasComponent,
+    ColorCategoriaDirective,
+    ModalFinDeJuegoComponent
   ],
   imports: [
     CommonModule,

@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Chat } from '../entidades/chat';
 import { Palabra } from '../entidades/palabra';
 import { Usuario } from '../entidades/usuario';
+import { Pregunta } from '../entidades/pregunta';
 
 
 @Injectable({
@@ -35,9 +36,9 @@ export class FirestoreService {
   }
 
   //Ahorcado
-  updateScoreUsr(usuario:Usuario){ 
+  updateScoreUsr(usuario:Usuario):Promise<any>{ 
     const usrRef = doc(this.firestore, `usuarios/${usuario.id}`);
-    updateDoc(usrRef, {puntaje_acumulado: usuario.puntaje_acumulado});
+    return updateDoc(usrRef, {puntaje_acumulado: usuario.puntaje_acumulado});
   }
 
   addPalabra(palabra:Palabra){  
@@ -52,4 +53,25 @@ export class FirestoreService {
     const pRef = collection(this.firestore, 'palabras');
     return collectionData(pRef,{idField: 'id'}) as Observable<Palabra[]>;
   }
+
+  //Preguntados
+  addPregunta(pregunta:Pregunta){
+    const pregRef = collection(this.firestore, 'preguntas');
+    addDoc(pregRef, {})
+    .then((refDoc) => {
+      setDoc(refDoc, {
+        id: refDoc.id,
+        categoria: pregunta.categoria,
+        texto: pregunta.texto,
+        opciones: pregunta.opciones,
+        respuesta: pregunta.respuesta
+      });
+    });
+  }
+
+  getPreguntas():Observable<Pregunta[]>{
+    const pregRef = collection(this.firestore, 'preguntas');
+    return collectionData(pregRef, {idField: 'id'}) as Observable<Pregunta[]>;
+  }
+
 }

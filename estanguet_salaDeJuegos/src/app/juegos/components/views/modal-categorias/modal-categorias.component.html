@@ -1,0 +1,17 @@
+<dialog #dialogRef>
+    <div class="titulo">
+        <p>Selección Libre</p>
+    </div>
+    <div class="parrafo">
+        <p>Escoge la categoria de la siguiente pregunta</p> 
+    </div>
+    <div class="categorias" (click)="emitirCategoria($event)">
+        <input type="button" value="Historia" [appColorCategoria]="'Historia'">
+        <input type="button" value="Arte" [appColorCategoria]="'Arte'">
+        <input type="button" value="Deportes" [appColorCategoria]="'Deportes'">
+        <input type="button" value="Ciencia" [appColorCategoria]="'Ciencia'">
+        <input type="button" value="Geografia" [appColorCategoria]="'Geografia'">
+        <input type="button" value="Cine" [appColorCategoria]="'Cine'">
+    </div>
+    </dialog>
+    

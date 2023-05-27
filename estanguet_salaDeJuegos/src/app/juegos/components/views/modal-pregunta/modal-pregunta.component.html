@@ -1,0 +1,25 @@
+<dialog #dialogRef>
+    <div class="categoria"  [appColorCategoria]="categoria">
+        <p>{{categoria}}</p>
+    </div>
+    <div class="imagen"> 
+        <img src="{{urlImg}}" alt="imagenApi">
+    </div> 
+    <div class="pregunta">
+        <p>{{pregunta?.texto}}</p>
+    </div>
+    <div class="opciones">
+        <input type="button" value="{{opcion1}}" (click)="verificarRespuesta($event)">
+        <input type="button" value="{{opcion2}}" (click)="verificarRespuesta($event)">
+        <input type="button" value="{{opcion3}}" (click)="verificarRespuesta($event)">
+        <input type="button" value="{{opcion4}}" (click)="verificarRespuesta($event)">
+    </div>
+    <div class="resultado" *ngIf="mostrarResultado">
+        <div #divResultado>{{resultado}}</div> 
+        <input type="button" value="Siguiente pregunta" (click)="cerrarModal()">
+        <audio *ngIf="respuestaCorrecta" autoplay src="./../../../../assets/img_preguntados/respuestaCorrecta.mp3"></audio>
+        <audio *ngIf="respuestaIncorrecta" autoplay src="./../../../../assets/img_preguntados/respuestaIncorrecta.mp3"></audio>
+    </div> 
+    <audio autoplay src="./../../../../assets/img_preguntados/pregunta.mp3"></audio>
+</dialog>
+

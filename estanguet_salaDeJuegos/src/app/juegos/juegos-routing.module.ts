@@ -12,6 +12,7 @@ const routes: Routes = [
   {path: 'mayor-menor', component:MayorMenorComponent},
   {path: 'preguntados', component:PreguntadosComponent},
   {path: 'juego-propio', component:JuegosPropioComponent},
+  {path: 'home', component:HomeComponent},
   {path: '', component:HomeComponent},
 ];
 

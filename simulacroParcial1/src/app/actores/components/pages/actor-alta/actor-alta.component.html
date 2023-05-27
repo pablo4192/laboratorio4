@@ -1,6 +1,7 @@
 <div id="contenedor">
     <form>
         <h2>Alta Actor</h2>
+        <small *ngIf="altaExitosa" style="color:rgb(105, 175, 0); font-size: 1rem;">Alta exitosa</small>
         <div class="dataForm">
             <label for="nombre">Nombre:</label><input type="text" name="nombre" [(ngModel)]="this.actor.nombre">
         </div>
