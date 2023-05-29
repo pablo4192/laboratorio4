@@ -1,4 +1,7 @@
-<div class="contenedor" > 
+<div class="contenedor" >
+    <app-modal-fin-de-juego *ngIf="this.partidaFinalizada" [victoria]="this.victoria" [retirarse]="this.retiro" 
+        [puntos]="this.puntaje" (reiniciarJuego)="this.reiniciar()">
+    </app-modal-fin-de-juego> 
     <div id="puntaje">Puntaje parcial: {{puntaje}}</div> 
     <div class="row" id="divCartas" #divCartasRef>
         <img *ngFor="let card of cartas" src="{{card}}" alt="imgCarta" id="imgCarta">

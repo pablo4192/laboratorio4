@@ -1,1 +1,83 @@
-<p>quien-soy works!</p>
+<div class="container-fluid" id="contenedorPrincipal">
+    <div id="contDatos">
+        <div>
+            <img src="./../../../../assets/img/pabloCvFondoGris.png" alt="pablo.png">
+        </div>
+        <div class="col-12 col-xl-8" id="divDatosPersonales">
+            <div class="datosTitulo">Datos Personales</div>
+            <div class="datos">
+                <p>Nombre y apellido: Pablo Estanguet</p>
+                <p>Estudiante Tecnicatura Superior en Programación</p>
+                <p>Institución: UTN Avellaneda</p>
+                <p>Division: 4B</p>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid" id="divJuegoPropio">
+        <p>JUEGO PROPIO</p>
+        <p #nombreJuego>DESTRUCTOR DE METEORITOS</p>
+        <div #divExplicacion class="explicacion" (click)="mostrarExplicacionJuego()">
+            Explicación
+            <div>></div>
+        </div>
+        <div class="divImgJuego">
+            <img id="imgJuegoPropio" src="assets/img_juegoPropio/planetaTierra.png" alt="img_juegoPropio">
+        </div>
+    </div>
+    <div *ngIf="flagExplicacion" class="reglasJuego">
+        <div id="anterior" (click)="retrocederPagina()">&lt;</div>
+        <div class="data">
+            <div *ngIf="pag1" id="pagina1">
+                <p>OBJETIVO DEL JUEGO</p>
+                <p>
+                    El objetivo del juego es destruir la mayor cantidad de meteoritos antes de que toquen la superficie de la tierra. 
+                </p>
+                <p>
+                    El tamaño de los mismos varía, como también su dirección. Los de tamaño más grandes necesitan de dos impactos para ser eliminados. 
+                </p>
+                <p>
+                    Cada meteorito destruido suma puntos al acumulado de la partida en juego, la cantidad eliminada modifica el resultado final del juego.
+                </p>
+                <p>
+                    Es importante tener en cuenta que si el último meteorito impacta sobre la superficie perderás la partida.
+                </p>
+            </div>
+            <div *ngIf="pag2" id="pagina2">
+                <p>MODO DE JUEGO</p>
+                <p>
+                    Para destruir los objetivos se debe hacer click sobre los mismos. Los de tamaño chico necesitan 1 impacto para ser destruidos,
+                    Los más grandes 2 impactos.
+                </p>
+                <p>
+                    En el transcurso de la partida cruzará sobre el cielo este icono: <img src="assets/img_juegoPropio/react.png" alt="react.png">, que permitirá al hacer click sobre él, eliminar los meteoritos
+                    solo pasando el cursor por encima de ellos, sin necesidad de hacer click. Esto por un tiempo determinado que aparecerá en la pantalla.
+                    
+                </p>
+                <p>
+                    Cuando termine la partida, indiferentemente de si has ganado o perdido podrás iniciar una nueva partida o salir del juego. 
+                </p>
+            </div>
+            <div *ngIf="pag3" id="pagina3">
+                <p>PUNTAJE OBTENIDO</p>
+                <p>
+                    Cada meteorito destruido suma puntos al acumulado de la partida.
+                    Independientemente de su tamaño cada uno equivale a 5 puntos.<br>
+                    La cantidad de objetivos neutralizados modifica el puntaje y la performance del juego que se visualiza
+                    en el texto final que aparece cuando concluye la partida.
+                </p>
+                <p>
+                    El último meteorito necesitará de varios impactos para ser destruido.
+                    Si este impacta sobre la superficie de la tierra perderás la partida y los puntos acumulados no serán
+                    sumados al puntaje general.
+                    En síntesis, todo será en vano.<br>
+                </p>
+                <p>
+                    Si llegaste hasta aquí estás preparado/a para salvar nuestro planeta...
+                </p>
+            </div>
+        </div>
+        <div (click)="pasarPagina()" id="siguiente">&gt;</div>
+        <div (click)="ocultarExplicacion()" class="cerrar">X</div>
+    </div>
+</div>
+

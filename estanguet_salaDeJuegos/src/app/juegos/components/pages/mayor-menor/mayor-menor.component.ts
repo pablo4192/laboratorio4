@@ -13,11 +13,9 @@ export class MayorMenorComponent {
   puntaje:number = 0;
   numeroAnterior: number = 0;
   paloAnterior:string = "";
-
-
-  flagVictoria = false;
-  flagDerrota = false;
-  flagFinJuego = false;
+  partidaFinalizada:boolean = false;
+  victoria:boolean = false;  
+  retiro:boolean = false;
 
   arrayPalos:string[] = [
     "oro", "espada", "basto", "copa"
@@ -44,7 +42,7 @@ export class MayorMenorComponent {
 
   darCarta(seleccionUsr:string){
 
-    if(!this.flagDerrota) //Todo esto pasa mientras el jugador este jugando, si perdio tiene que reiniciar
+    if(!this.partidaFinalizada)
     {
       let ruta:string;
       let numero:number;
@@ -122,45 +120,34 @@ export class MayorMenorComponent {
   }
 
   avisarDerrota(){
-    this.flagDerrota = true;
-
-    //Modificar por modal, hacer logica
-    this.reiniciar();
+    this.partidaFinalizada = true;
   }
 
   avisarVictoria(){
    
-    if(this.loginService.usuario != null && !this.flagDerrota && !this.flagFinJuego)
+    if(this.loginService.usuario != null && !this.victoria && !this.partidaFinalizada)
     {
       this.puntaje += 50;
-      this.flagVictoria = true;
+      this.partidaFinalizada = true;
+      this.victoria = true;
     }
-
-    //Modificar por modal, hacer logica
-    this.reiniciar();
   }
 
   reiniciar(){
     this.cartas.splice(0);
     this.numeroAnterior = 0;
     this.paloAnterior = "";
-    this.flagVictoria = false;
-    this.flagDerrota = false;
-    this.flagFinJuego = false;
     this.puntaje = 0;    
+    this.partidaFinalizada = false;
+    this.victoria = false;
   }
 
   retirarse(){ 
-
-    //Modificar por modal, hacer logica
-    this.reiniciar();
-    this.darCarta("");
-
-
-    // if(this.loginService.usuario != null && !this.flagDerrota && !this.flagFinJuego) 
-    // {
-    //   this.flagFinJuego = true; 
-    // }
+    if(this.loginService.usuario != null && !this.victoria && !this.partidaFinalizada) 
+    {
+      this.partidaFinalizada = true; 
+      this.retiro = true;
+    }
   }
 
   numeroRandom(min:number, max:number) {

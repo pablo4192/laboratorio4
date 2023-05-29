@@ -1,0 +1,90 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+dialog{
+    margin: auto;
+    width: 650px;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(to bottom , rgb(238, 238, 238), rgb(250, 250, 250));
+
+    border: none;
+    border-radius: 7px;
+
+}
+
+dialog::backdrop{
+    background-color: rgba(0, 0, 0, .4);
+}
+
+.title{
+    height: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(17, 17, 84);
+    color: #eee;
+}
+
+.title p{
+    padding: 20px;
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+    font-weight: bolder;
+    text-align: center;
+}
+
+.text{
+    height: 40%;
+    border: 3px white solid;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(240, 240, 240);
+
+}
+
+.text p{
+    line-height: 40px;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.buttons{
+    height: 20%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: flex-end;
+    padding-bottom: 10px;
+    position: relative;
+}
+
+.buttons input{
+    width: 150px;
+    height: 40px;
+    padding: 5px;
+    border: none;
+    border-radius: 7px;
+    background-color: orange;
+    color: white;
+    font-weight: bold;
+}
+
+.buttons input:hover{
+    cursor: pointer;
+    background-color: orangered;
+}
+
+
+#bloqueo{
+    position: absolute;
+    width: 100%;
+    height: 20%;
+    bottom: 0;
+    background-color: transparent;
+}

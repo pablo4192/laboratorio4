@@ -15,6 +15,7 @@ import { ModalPreguntaComponent } from './components/views/modal-pregunta/modal-
 import { ModalCategoriasComponent } from './components/views/modal-categorias/modal-categorias.component';
 import { ColorCategoriaDirective } from '../directives/color-categoria.directive';
 import { ModalFinDeJuegoComponent } from './components/views/modal-fin-de-juego/modal-fin-de-juego.component';
+import { ModalFinJuegoMeteoritosComponent } from './components/views/modal-fin-juego-meteoritos/modal-fin-juego-meteoritos.component';
 
 
 
@@ -31,7 +32,8 @@ import { ModalFinDeJuegoComponent } from './components/views/modal-fin-de-juego/
     ModalPreguntaComponent,
     ModalCategoriasComponent,
     ColorCategoriaDirective,
-    ModalFinDeJuegoComponent
+    ModalFinDeJuegoComponent,
+    ModalFinJuegoMeteoritosComponent
   ],
   imports: [
     CommonModule,

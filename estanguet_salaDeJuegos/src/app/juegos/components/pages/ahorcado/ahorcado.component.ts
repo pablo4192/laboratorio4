@@ -9,23 +9,18 @@ import { FirestoreService } from 'src/app/services/firestore.service';
 })
 export class AhorcadoComponent {
 
-  puntaje:number = 10;
-
+  puntajePorVictoria:number = 10;
   valorTecla:string = '';
   palabra:Palabra|any;
   incognita:string = '';
   rutaImgAhorcado = "./../../../../assets/img_ahorcado/ahorcado0.jpg";
   intentos = 6;
-
-  //Para modales y logica
-  flagDerrota = false;
-  flagVictoria = false;
-  
   timer:number = 60;
   idInterval:any;
-
   arrayPalabras:Palabra[] = [];
   pistas:string[] = [];
+  partidaFinalizada:boolean = false;
+  victoria:boolean = false;  
   
   constructor(private firestoreService:FirestoreService) {
     
@@ -34,12 +29,8 @@ export class AhorcadoComponent {
   ngOnInit(): void {
     this.firestoreService.getPalabras().subscribe(data => {
       this.arrayPalabras = data;
-      console.log(this.arrayPalabras);
-      
       this.escogerPalabra();
     }); 
-    
-    
   }
 
   ejecutarTimer(){
@@ -79,7 +70,7 @@ export class AhorcadoComponent {
   controlarEventoTeclado($event:any){
     this.valorTecla = $event;
 
-    if(!this.flagDerrota)
+    if(!this.partidaFinalizada)
     this.verificarLetraIngresada();
 
   }
@@ -137,7 +128,6 @@ export class AhorcadoComponent {
                 break;
                 default:
                   this.rutaImgAhorcado = "./../../../../assets/img_ahorcado/ahorcado6.jpg";
-                  this.flagDerrota = true;
                   this.avisarDerrota();
 
     }
@@ -154,25 +144,20 @@ export class AhorcadoComponent {
     this.pistas.splice(0);
     this.escogerPalabra();
     this.intentos = 6;
-    this.flagDerrota = false;
-    this.flagVictoria = false;
+    this.partidaFinalizada = false;
+    this.victoria = false;
     this.timer = 60;
   }
 
-  //Modificar
+  
   avisarVictoria(){
     clearInterval(this.idInterval);
-    this.flagVictoria = true;
-
-    //Cambiar por modal que avise victoria y realiza logica
-    this.reiniciarJuego();
+    this.partidaFinalizada = true;
+    this.victoria = true;
   }
 
   avisarDerrota(){
     clearInterval(this.idInterval);
-    this.flagDerrota = true;
-    
-    //Cambiar por modal que avise derrota y realiza logica
-    this.reiniciarJuego();
+    this.partidaFinalizada = true;
   }
 }

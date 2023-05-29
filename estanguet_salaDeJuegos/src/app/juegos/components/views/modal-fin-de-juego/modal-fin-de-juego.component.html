@@ -1,5 +1,5 @@
 <dialog #dialogRef>
-    <div id="victoria" *ngIf="this.victoria">
+    <div id="victoria" *ngIf="this.victoria && !this.retirarse">
         <div class="imagen">
             <img src="./../../../../../assets/img_memes/fort.webp" alt="fort.webp">
         </div>
@@ -13,7 +13,7 @@
             </div>
         </div>
     </div>
-    <div id="derrota" *ngIf="!this.victoria">
+    <div id="derrota" *ngIf="!this.victoria && !this.retirarse">
         <div class="imagen">
             <img src="./../../../../../assets/img_memes/miradaConan.jpg" alt="miradaConan.webp">
         </div>
@@ -23,6 +23,19 @@
             </div>
             <div>
                 <p>Deseas Iniciar una nueva partida?</p>
+            </div>
+        </div>   
+    </div>
+    <div id="retirarse">
+        <div class="imagen">
+            <img src="./../../../../../assets/img_memes/bueno-si.gif" alt="buenosi.gif">
+        </div>
+        <div class="texto">
+            <div>
+                <p>Deseas retirarte?</p>
+            </div>
+            <div>
+                <p>Al retirarte los puntos obtenidos en esta partida se sumaran al puntaje acumulado.</p>
             </div>
         </div>   
     </div>

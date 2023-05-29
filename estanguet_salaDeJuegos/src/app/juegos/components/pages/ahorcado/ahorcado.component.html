@@ -1,4 +1,7 @@
 <div class="container-fluid contenedorPrincipal">
+    <app-modal-fin-de-juego *ngIf="this.partidaFinalizada" [victoria]="this.victoria" 
+        [puntos]="this.puntajePorVictoria" (reiniciarJuego)="this.reiniciarJuego()">
+    </app-modal-fin-de-juego>
     <div class="row divAhorcado"> 
         <div class="col-12 col-sm-4 imgAhorcado"> 
             <img src={{rutaImgAhorcado}} alt="ahorcado0.jpg">

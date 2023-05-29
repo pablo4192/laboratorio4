@@ -1,0 +1,16 @@
+<dialog #divDialog>
+    <div class="title">
+        <p>{{titulo}}</p> 
+    </div>
+      <div class="text">
+        <p>Meteoritos interceptados con exito: {{meteoritosInterceptados}}</p>
+        <p>Tu puntaje es: {{puntaje}}</p>
+        <p>Se sumaran a tu puntaje general acumulado</p>
+      </div>
+      <div class="buttons">
+        <input type="button" value="Salir" (click)="salir()">
+        <input type="button" value="Nueva partida" (click)="reiniciar()"> 
+      </div>
+      <div *ngIf="flag" id="bloqueo"></div> 
+  </dialog>
+

@@ -1,0 +1,306 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+#contenedorPrincipal{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+#contDatos{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 55vh;
+    
+}
+
+#contDatos>div:first-child{
+    min-height: 45vh;
+    width: 20%;
+    background-color: #eef;
+    border-radius: 10px 0 0 10px;
+
+    img{
+        width: 100%;
+        height: 100%;
+        border-radius: 10px 0 0 10px;
+    }
+}
+
+#divDatosPersonales{ 
+    
+    border: 2px black #fff;
+    border-radius: 0 10px 10px 0;
+    padding: 0;
+    background-color: #0668bd;
+    color: #eee;
+    font-size: 2rem;
+    display: flex;
+    flex-direction: column;
+    line-height: 50px;
+    text-align: start;
+    font-family: Arial, Helvetica, sans-serif;
+    min-height: 45vh;
+    width: 60%;
+ }
+ 
+ .datosTitulo{
+    width: 100%;
+    height: 15%;
+    border-bottom: 1px white solid;
+    font-weight: 700;
+    display: flex;
+    justify-content: center;
+    align-items: center;   
+ }
+ 
+ .datos{
+    height: 85%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    border-top: 1px white solid;
+    padding: 10px;
+ }
+
+#divJuegoPropio{
+    margin-top: 20px;
+    padding-top: 20px;
+    height: 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    background-color: rgb(20, 20, 20);
+    color: #ddd;
+    font-family:'Consolas';
+}
+
+#divJuegoPropio p:first-child{
+    font-size: 1.5rem;
+    font-weight: bold;
+    letter-spacing: 5px;
+    color: orangered;
+    width: 80%;
+    border-bottom: 1px solid white;
+    text-align: center;
+    padding: 40px 0 20px 0;
+   
+}
+
+#divJuegoPropio :nth-child(2){
+    font-size: 2rem;
+    text-shadow: 0 0 20px rgba(250, 250, 250,.7);
+    margin-top: 20px;
+    visibility: hidden;
+    
+}
+
+.divImgJuego{
+    height: 65%;
+    width: 100%;
+}
+
+#imgJuegoPropio{
+    width: 100%;
+    height: 100%;
+}
+
+.explicacion{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 50px;
+    border-radius: 5px;
+    border: 1px white solid;
+    margin-top: 10px;
+    visibility: hidden;
+    cursor: pointer;
+    transition: all .3s;
+   
+}
+
+.fxOpacidad{
+    animation: 2s linear 1 efectoOpacidad;
+}
+
+.fxOpacidad2{
+    animation: 2s linear 1 efectoOpacidad2;
+}
+
+@keyframes efectoOpacidad{
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+
+@keyframes efectoOpacidad2{
+    0%{
+        opacity: 0;
+    }
+    30%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+
+.explicacion>div{
+    color: yellow;
+    font-size: 1.5rem;
+    width: 15px;
+    transform: rotate(90deg);
+}
+
+.explicacion:hover{
+    box-shadow: 0 0 10px rgba(250, 250, 250,.7);
+    transition: all .3s;
+    text-shadow: 0 0 20px rgba(250, 250, 250,.7);
+}
+
+.reglasJuego{
+    position: absolute;
+    width: 100%;
+    height: 157vh;
+    background-color: rgba(0, 0, 0, .5);
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.data{
+    border: 1px white solid;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(250, 250, 250,.7);
+    width: 35%;
+    min-height: 70vh;
+    top: 10%;
+    position: fixed;
+    color: #fff;    
+    padding: 5px 10px;
+    background-color: rgba(0, 0, 0, .6) ;
+    animation: .6s ease 1 aperturaExp;
+}
+
+@keyframes aperturaExp{
+    0%{
+        transform: scale(0);
+    }
+    100%{
+        transform: scale(1);
+    }
+}
+
+#pagina1, #pagina2, #pagina3{
+   font-size: 1.2rem;
+}
+
+#pagina1 p:first-child, #pagina2 p:first-child, #pagina3 p:first-child{
+    padding: 5px;
+    margin-bottom: 20px;
+    position: relative;
+    letter-spacing: 2px;
+    font-size: 2rem;
+    color: #eee;
+    text-align: center;
+}
+
+#pagina1 p:first-child::after, #pagina2 p:first-child::after, #pagina3 p:first-child::after{
+    content: "";
+    width: 0;
+    height: 2px;
+    background-color: goldenrod;
+    display: block;
+    position: absolute;
+    bottom: -10%;
+    left: 50%;
+    animation: 1.5s ease 1 fxTituloOverLine forwards;
+} 
+
+
+@keyframes fxTituloOverLine{
+    100%{
+        left: 5%;
+        width: 90%;
+        box-shadow: 0 5px 10px gold;
+    }
+}
+
+#pagina1 p, #pagina2 p, #pagina3 p{
+    padding: 10px 0;
+}
+
+#pagina2 img{
+    width: 7%;
+    height: 7%;
+}
+
+.cerrar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 1.5rem;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    background-color: orangered;
+    color: #eee;
+    position: fixed;
+    top: 7.5%;
+    left: 66%;
+    cursor: pointer;
+    animation: .6s ease 1 aperturaExp;
+    transition: all .5s;
+}
+
+.cerrar:hover{
+    transition: all .5s;
+    transform: scale(1.2);
+}
+
+#anterior, #siguiente{
+    width: 5% ;
+    height: 30%;
+    background-color: rgba(0, 0, 0, .2) ;
+    position: fixed;
+    top: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 4rem;
+    font-weight: bold;
+    color: #eee;
+    border-radius: 5px;
+}
+
+#anterior:hover, #siguiente:hover{
+    background-color: rgba(0, 0, 0, .7);
+    text-shadow: 0 0 10px rgba(250, 250, 250,.8);
+    transition: all .5s;
+    cursor: pointer;
+}
+
+#anterior{
+    left: 27%;
+}
+
+#siguiente{
+    right: 27%;
+}

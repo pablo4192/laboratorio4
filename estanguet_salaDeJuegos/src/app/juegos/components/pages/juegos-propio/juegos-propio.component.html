@@ -1,1 +1,43 @@
-<p>juegos-propio works!</p>
+<div class="container-fluid" id="contenedor">
+    <div id="comenzar">
+        <p>Destruye la mayor cantidad de meteoritos antes de que impacten en la superficie.</p>
+        <p>Cada objetivo destruido suma 5 puntos a tu puntaje.</p>
+        <p>Aunque destruyas todos los meteoritos si no logras destruir el ultimo todo sera en vano...</p>
+        <div (click)="comenzarJuego()">Comenzar juego</div>
+    </div>
+    <div class="container-fluid" id="juego" #divContainer> 
+        <img src="./../../../../assets/img_juegoPropio/planetaTierra.png" alt="planetaTierra.png" id="planetaImg">
+        <div *ngIf="destruccionMasiva" class="destruccionMasiva">
+            <p>DESTRUCCION MASIVA ACTIVADA</p> 
+            <p>Pasa el cursor por los meteoritos y seran destruidos automaticamente</p>
+            <p>{{timerDestruccionMasiva}}</p>
+        </div>
+        <div *ngIf="flagDerrota" class="gameOver"> 
+            <div class="row">
+                <div class="col-12 col-md-7 divGameOver">   
+                    <p>GAME OVER</p>
+                </div>
+                <div class="col-12 col-md-5 gameOverInputs">
+                    <input type="button" value="Nueva partida" (click)="reiniciar()">
+                    <input type="button" value="Salir" (click)="salir()">
+                </div>
+                <audio src="assets/img_juegoPropio/gameOver.mp3" autoplay></audio>
+            </div>
+        </div>
+        <div id="btnReiniciar" *ngIf="start" (click)="reiniciar()">Reiniciar</div>
+    </div> 
+    <div class="contadorMeteoritos">
+            Meteoritos interceptados: {{meteoritosEliminados}}
+            <p *ngIf="this.mostrarEnergiaGigante">Energia: {{this.energiaMeteoritoGigante}}</p>
+    </div>
+    <app-modal-fin-juego-meteoritos *ngIf="flagModalReinicio" 
+                                    [meteoritosInterceptados]="meteoritosEliminados"
+                                    (reiniciarJuego)="manejarEventoReiniciar()">
+    </app-modal-fin-juego-meteoritos>
+</div>
+
+
+
+
+
+

@@ -11,6 +11,7 @@ import { LoginService } from 'src/app/services/login.service';
 export class ModalFinDeJuegoComponent {
 
   @Input() victoria:boolean = false;
+  @Input() retirarse:boolean = false;
   @Input() puntos:number = 0;
   @Output() reiniciarJuego = new EventEmitter<boolean>();
   @ViewChild('dialogRef') dialogRef:ElementRef|undefined;
