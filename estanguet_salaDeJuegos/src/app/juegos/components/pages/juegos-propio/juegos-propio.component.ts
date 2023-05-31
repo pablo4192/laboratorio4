@@ -12,7 +12,7 @@ export class JuegosPropioComponent {
 
   flagModalReinicio:boolean = false;
   start:boolean = false;
-  lanzamientos:number = 1;
+  lanzamientos:number = 80;
   meteoritosALanzar:number = this.lanzamientos;
   meteoritos:HTMLDivElement[] = [];
   meteoritosEliminados:number = 0;
@@ -26,14 +26,24 @@ export class JuegosPropioComponent {
   mostrarEnergiaGigante:boolean = false;
   flagDerrota = false;
   idIntervalGeneradorMeteoritos:any;
+  musica:HTMLAudioElement|undefined;
 
   constructor(private renderer2:Renderer2,
               private router:Router) { }
 
   ngOnInit(): void {
-    window.scroll({
-      top:0
+    this.renderer2.selectRootElement(window).scroll({
+      top: 0
     });
+  }
+
+  ngOnDestroy():void{
+    this.stopMusic();
+  }
+
+  private stopMusic():void{
+    this.renderer2.selectRootElement(this.musica).pause();
+    this.renderer2.selectRootElement(this.musica).currentTime = 0;
   }
 
   manejarEventoReiniciar():void{
@@ -41,16 +51,15 @@ export class JuegosPropioComponent {
   }
 
   reiniciar():void{
-    
     clearInterval(this.idIntervalGeneradorMeteoritos);
-    this.eliminarMeteoritos();
+    this.removerMeteoritos();
+    this.removerOvni();
+    this.reiniciarVariables();
+    this.stopMusic();
+    this.comenzarJuego();
+  }
 
-    if(this.ovni != undefined)
-    {
-      this.renderer2.removeChild(this.containerRef?.nativeElement, this.ovni);
-      this.ovni = undefined;
-    }
-
+  private reiniciarVariables():void{
     this.meteoritosALanzar = this.lanzamientos;
     this.meteoritosEliminados = 0;
     this.puntaje = 0;
@@ -62,15 +71,17 @@ export class JuegosPropioComponent {
     this.flagDerrota = false;
     this.energiaMeteoritoGigante = 21;
     this.mostrarEnergiaGigante = false;
-
-    this.comenzarJuego();
   }
 
-  salir():void{
-    this.router.navigate(['/juegos']);
+  private removerOvni():void{
+    if(this.ovni != undefined)
+    {
+      this.renderer2.removeChild(this.containerRef?.nativeElement, this.ovni);
+      this.ovni = undefined;
+    }
   }
 
-  eliminarMeteoritos():void{
+  private removerMeteoritos():void{
     if(this.meteoritos.length > 0)
     {
       this.meteoritos.forEach((m) => {
@@ -82,12 +93,20 @@ export class JuegosPropioComponent {
     }
   }
 
+  salir():void{
+    this.router.navigate(['/juegos']);
+  }
+
   comenzarJuego():void{
 
     if(!this.start)
     {
       this.start = true; 
 
+      this.musica = this.crearAudio('assets/sounds/juegos-propio.mp3');
+      this.renderer2.selectRootElement(this.musica).play();
+      this.renderer2.selectRootElement(this.musica).volume = .5;
+      
       this.renderer2.selectRootElement(window).scroll({
         top: 1000,
         behavior: 'smooth'
@@ -105,7 +124,6 @@ export class JuegosPropioComponent {
             if(this.meteoritosALanzar == 0)
             {
               clearInterval(this.idIntervalGeneradorMeteoritos);
-              this.start = false;
               this.generarMeteoritoGigante();
             }
         
@@ -114,22 +132,25 @@ export class JuegosPropioComponent {
     }
   }
 
+  private crearAudio(src:string):HTMLAudioElement{
+    let audio = this.renderer2.createElement('audio');
+    this.renderer2.setAttribute(audio, 'src', src);
+    return audio;
+  }
+
   generarMeteoritos():void{
     
     let meteorito = this.renderer2.createElement('div');
     this.renderer2.addClass(meteorito, 'img-fluid');
     this.renderer2.addClass(meteorito, 'divMeteorito');
 
-    
     let img = this.renderer2.createElement('img');
     this.renderer2.setAttribute(img, 'src', 'assets/img_juegoPropio/meteorito.png');
     this.renderer2.setAttribute(img, 'alt', 'meteorito.png');
     
-    let audio = this.renderer2.createElement('audio');
-    this.renderer2.setAttribute(audio, 'src', 'assets/img_juegoPropio/explosionChica.mp3');
+    let audio = this.crearAudio('assets/img_juegoPropio/explosionChica.mp3');
     
     this.renderer2.appendChild(img, audio);
-
     this.renderer2.appendChild(meteorito, img);
 
     if(this.contadorMeteoritos == 10 || this.contadorMeteoritos == 20 || this.contadorMeteoritos == 30 || this.contadorMeteoritos == 40)
@@ -186,8 +207,7 @@ export class JuegosPropioComponent {
     this.renderer2.setAttribute(img, 'src', 'assets/img_juegoPropio/meteorito.png');
     this.renderer2.setAttribute(img, 'alt', 'meteorito.png');
 
-    let audio = this.renderer2.createElement('audio');
-    this.renderer2.setAttribute(audio, 'src', 'assets/img_juegoPropio/explosionGrande.mp3');
+    let audio = this.crearAudio('assets/img_juegoPropio/explosionGrande.mp3');
     this.renderer2.appendChild(img, audio);
 
     this.seleccionarTrayectoriaGigante(gigante);
@@ -255,15 +275,13 @@ export class JuegosPropioComponent {
   }
 
   cambiarEventoMeteoritos():void{
-    
-  let hermano = this.renderer2.nextSibling(this.containerRef?.nativeElement.firstChild);
+    let hermano = this.renderer2.nextSibling(this.containerRef?.nativeElement.firstChild);
 
-  do{
-    
-    this.renderer2.listen(hermano, 'mouseover', (e) => this.destruirMeteorito(e));
-    hermano = this.renderer2.nextSibling(hermano); 
+    do{
+      this.renderer2.listen(hermano, 'mouseover', (e) => this.destruirMeteorito(e));
+      hermano = this.renderer2.nextSibling(hermano); 
 
-  }while (hermano != null);
+    }while (hermano != null);
 
   }
 
@@ -351,6 +369,8 @@ export class JuegosPropioComponent {
       this.renderer2.selectRootElement(img?.firstChild).play();
       this.renderer2.setAttribute(img, 'src', 'assets/img_juegoPropio/explosion2.png')
       this.renderer2.addClass(img, 'exp');
+      
+      this.renderer2.selectRootElement(this.musica).volume = .2;
 
       setTimeout(() => {
         this.renderer2.removeChild(meteoritoGigante.parentNode, meteoritoGigante);
@@ -373,6 +393,7 @@ export class JuegosPropioComponent {
     setTimeout(() => {
       if(this.energiaMeteoritoGigante > 0)
       {
+          this.stopMusic();
           this.flagDerrota = true;
           this.renderer2.removeChild(meteoritoGigante.parentNode, meteoritoGigante);
       }
@@ -383,6 +404,7 @@ export class JuegosPropioComponent {
         }, 1000);
           
       }
+
     }, 12000);
 
   }

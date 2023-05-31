@@ -24,7 +24,7 @@
                 <audio src="assets/img_juegoPropio/gameOver.mp3" autoplay></audio>
             </div>
         </div>
-        <div id="btnReiniciar" *ngIf="start" (click)="reiniciar()">Reiniciar</div>
+        <div id="btnReiniciar" *ngIf="start && this.meteoritosALanzar > 0" (click)="reiniciar()">Reiniciar</div>
     </div> 
     <div class="contadorMeteoritos">
             Meteoritos interceptados: {{meteoritosEliminados}}
