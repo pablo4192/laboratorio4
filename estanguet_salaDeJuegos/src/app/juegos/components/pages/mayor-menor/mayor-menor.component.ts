@@ -140,6 +140,7 @@ export class MayorMenorComponent {
     this.puntaje = 0;    
     this.partidaFinalizada = false;
     this.victoria = false;
+    this.retiro = false;
     this.darCarta("");
   }
 
