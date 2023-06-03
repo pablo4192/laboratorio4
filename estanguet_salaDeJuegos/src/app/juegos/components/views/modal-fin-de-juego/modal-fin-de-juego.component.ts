@@ -37,7 +37,7 @@ export class ModalFinDeJuegoComponent {
   }
 
   actualizarPuntaje():void{
-    if(this.puntos != 0 && this.ls.usuario){
+    if(this.puntos > 0 && this.ls.usuario){
       this.ls.usuario.puntaje_acumulado += this.puntos;
       
       this.fs.updateScoreUsr(this.ls.usuario)
