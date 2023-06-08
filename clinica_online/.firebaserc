@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "clinica-online-bc8d7"
+  },
+  "targets": {
+    "clinica-online-bc8d7": {
+      "hosting": {
+        "clinica_online": [
+          "clinica-online-bc8d7"
+        ]
+      }
+    }
+  }
+}

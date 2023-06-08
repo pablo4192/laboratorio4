@@ -1,0 +1,24 @@
+<dialog *ngIf="this.agregarEspecialidad" appOpenModal #modalRef>
+    <form [formGroup]="this.formulario" (ngSubmit)="addEspecialidad()">
+        <div class="form-group">
+            <label for="especialidad">Ingrese nueva especialidad:</label>
+            <input type="text" name="especialidad" class="form-control" formControlName="especialidad">
+            <small *ngIf="especialidad.errors?.required && especialidad.touched">
+                Por favor complete el campo!
+            </small>
+            <small *ngIf="especialidad.errors?.pattern">
+                La especialidad debe contener solo letras, maximo 20 caracteres!
+            </small>
+            <small *ngIf="this.espaciosVacios">
+                Por favor ingrese texto!
+            </small>
+            <small *ngIf="exito" id="exito">
+                Se guardo la especialidad!
+            </small>
+        </div>
+        <div class="buttons">
+            <input type="button" value="Cancelar" class="btn btn-secondary" (click)="this.closeModal()">
+            <input type="submit" value="Agregar a la lista" class="btn btn-primary" [disabled]="formulario.invalid">
+        </div>
+    </form>
+</dialog>

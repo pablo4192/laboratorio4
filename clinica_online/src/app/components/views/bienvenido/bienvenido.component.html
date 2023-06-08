@@ -1,0 +1,27 @@
+<div id="contenedor">
+    <div>
+        <div id="registrarse" (click)="abrirOpciones()">
+            Registrarse
+        </div>
+        <div id="ingresar">
+            <a routerLink="login">Ingresar</a>
+        </div>
+    </div>
+    <div *ngIf="flagRegistro">
+        <a routerLink="registro">
+            <div class="tipoUsuario" (click)="esPaciente()">
+                Paciente
+            </div>
+        </a>
+        <a routerLink="registro">
+            <div class="tipoUsuario">
+                Profesional
+            </div> 
+        </a>
+    </div>
+</div>
+<div id="imagen">
+    <img src="./../../../../assets/doctores.jpg" alt="doctores.jpg">
+</div>
+
+

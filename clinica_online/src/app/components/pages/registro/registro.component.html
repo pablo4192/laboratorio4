@@ -1,0 +1,123 @@
+<div id="contenedor">
+    <form [formGroup]="formulario" (ngSubmit)="registrarse()">
+        <div class="form-group" >
+            <label for="nombre">Nombre:</label>
+            <input type="text" class="form-control" name="nombre" placeholder="Ingrese nombre" formControlName="nombre">
+            <small class="invalid" 
+            *ngIf="nombre.errors?.required && nombre?.touched">
+                El campo nombre es obligatorio!
+            </small>
+            <small class="invalid"
+            *ngIf="nombre.errors?.pattern">
+                El nombre debe contener solo letras y no debe tener espacios!
+            </small>
+        </div>
+        <div class="form-group">
+            <label for="apellido">Apellido:</label>
+            <input type="text" class="form-control" name="apellido" placeholder="Ingrese apellido" formControlName="apellido">
+            <small class="invalid" 
+            *ngIf="apellido.errors?.required && apellido?.touched">
+                El campo apellido es obligatorio!
+            </small>
+            <small class="invalid"
+            *ngIf="apellido.errors?.pattern">
+                El nombre debe contener solo letras y no debe tener espacios!
+            </small>
+        </div>
+        <div class="form-group">
+            <label for="edad">Edad:</label>
+            <input type="number" class="form-control" min="1" max="120" name="edad" placeholder="Ingrese edad" formControlName="edad">
+            <small class="invalid" 
+            *ngIf="edad.errors?.required && edad?.touched">
+                El campo edad es obligatorio!
+            </small>
+            <small class="invalid"
+            *ngIf="edad.errors?.min || edad.errors?.max">
+                La edad debe estar entre 0 y 120 años!
+            </small>
+        </div>
+        <div class="form-group">
+            <label for="dni">Dni:</label>
+            <input type="number" class="form-control" name="dni" placeholder="Ingrese dni" formControlName="dni">
+            <small class="invalid" 
+            *ngIf="dni.errors?.required && dni?.touched">
+                El campo dni es obligatorio!
+            </small>
+            <small class="invalid"
+            *ngIf="dni.errors?.pattern">
+                El dni deber tener 8 digitos!
+            </small>
+        </div>
+        <div class="form-group">
+            <label for="mail">Mail:</label>
+            <input type="text" class="form-control" name="mail" placeholder="Ingrese mail" formControlName="mail">
+            <small class="invalid" 
+            *ngIf="mail.errors?.required && mail?.touched">
+                El campo mail es obligatorio!
+            </small>
+            <small class="invalid"
+            *ngIf="mail.errors?.email">
+                Mail invalido, por favor revise si es un mail existente! 
+            </small>
+        </div>
+        <div *ngIf="this.fs.esPaciente" class="form-group">
+            <label for="obra_social">Obra social:</label>
+            <input type="text" class="form-control" name="obra_social" placeholder="Ingrese obra social" formControlName="obra_social">
+            <small class="invalid" 
+            *ngIf="obra_social.errors?.required && obra_social?.touched">
+                El campo obra social es obligatorio!
+            </small>
+            <small class="invalid"
+            *ngIf="obra_social.errors?.pattern">
+                La obra social tiene que ser alfanumerica!
+            </small>
+        </div>
+        <div *ngIf="!this.fs.esPaciente" class="form-group">
+            <label for="especialidad">Especialidad:</label>
+            <select name="" id="" #lista_especialidades formControlName="especialidad">
+                <option value="" hidden></option>
+            </select>
+            <input type="button" class="btn btn-secondary btn-sm " value="Agregar especialidad" (click)="abrirModalEspecialidad()">
+            <app-modal-especialidad [agregarEspecialidad]="this.agregarEspecialidad" (modalCerrado)="cerrarModalEspecialidad($event)"></app-modal-especialidad>
+            <small *ngIf="especialidad.errors?.required && especialidad.touched">
+                El campo especialidad es obligatorio!
+            </small>
+        </div>
+        <div *ngIf="this.paciente" class="form-group">
+            <label for="img">Cargue 2 imagenes para su perfil:</label>
+            <input type="file" class="form-control-file" name="img" multiple accept="image/*">
+        </div>
+        <div *ngIf="!this.paciente" class="form-group">
+            <label for="img">Imagen de perfil:</label>
+            <input type="file" class="form-control-file" name="img" accept="image/*">
+        </div>
+        <div class="form-group">
+            <label for="contrasenia">Contraseña:</label>
+            <input type="password" class="form-control" name="contrasenia" placeholder="Ingrese contraseña" formControlName="contrasenia">
+            <small class="invalid" 
+            *ngIf="contrasenia.errors?.required && contrasenia?.touched">
+                El campo contraseña es obligatorio!
+            </small>
+            <small class="invalid"
+            *ngIf="contrasenia.errors?.pattern">
+                La contraseña debe ser alfanumerica de 6 a 10 digitos!
+            </small>
+        </div>
+        <div class="form-group">
+            <label for="confirmar">Confirme contraseña:</label>
+            <input type="password" class="form-control" name="confirmar" placeholder="Reingrese contraseña" formControlName="confirmar">
+            <small class="invalid" 
+            *ngIf="confirmar.errors?.required && confirmar?.touched">
+                Confirmar la contraseña es obligatorio!
+            </small>
+            <small class="invalid"
+            *ngIf="confirmar.value != contrasenia.value">
+                La contraseña no coincide!
+            </small>
+        </div>
+            <button class="btn btn-lg btn-primary" type="submit" [disabled]="formulario.invalid || contrasenia.value != confirmar.value">
+                Registrarme
+            </button>
+    </form>
+</div>
+<app-loading *ngIf="this.loading"></app-loading>

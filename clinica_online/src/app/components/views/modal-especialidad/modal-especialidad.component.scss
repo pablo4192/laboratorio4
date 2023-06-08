@@ -1,0 +1,41 @@
+dialog{
+    margin: auto;
+    width: 30%;
+    height: 25%;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,.5);
+}
+
+dialog::backdrop{
+    background-color: rgba(0,0,0,.1);
+}
+
+form{
+    width: 100%;
+    height: 100%;
+}
+
+.form-group{
+    height: 70%;
+    
+}
+
+.buttons{
+    width: 100%;
+    height: 30%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+
+    input{
+        margin-left: 20px;
+        
+    }
+}
+
+#exito{
+    color: rgb(2, 164, 2);
+}
+
