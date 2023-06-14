@@ -83,13 +83,19 @@
                 El campo especialidad es obligatorio!
             </small>
         </div>
-        <div *ngIf="this.paciente" class="form-group">
+        <div *ngIf="this.fs.esPaciente" class="form-group">
             <label for="img">Cargue 2 imagenes para su perfil:</label>
-            <input type="file" class="form-control-file" name="img" multiple accept="image/*">
+            <input type="file" class="form-control-file" name="img" multiple accept="image/*" (change)="this.imagenes = $event.target">
+            <small *ngIf="this.errorImgPaciente">
+                Debe subir 2 imagenes para el perfil!
+            </small>
         </div>
-        <div *ngIf="!this.paciente" class="form-group">
+        <div *ngIf="!this.fs.esPaciente" class="form-group">
             <label for="img">Imagen de perfil:</label>
-            <input type="file" class="form-control-file" name="img" accept="image/*">
+            <input type="file" class="form-control-file" name="img" accept="image/*" (change)="this.imagenes = $event.target" >
+            <small *ngIf="this.errorImgProfesional">
+                Debe subir 1 imagen para su perfil!
+            </small>
         </div>
         <div class="form-group">
             <label for="contrasenia">Contraseña:</label>
@@ -115,9 +121,11 @@
                 La contraseña no coincide!
             </small>
         </div>
-            <button class="btn btn-lg btn-primary" type="submit" [disabled]="formulario.invalid || contrasenia.value != confirmar.value">
+            <button class="btn btn-lg btn-primary" type="submit" [disabled]="formulario.invalid || contrasenia.value != confirmar.value"> 
                 Registrarme
             </button>
     </form>
 </div>
 <app-loading *ngIf="this.loading"></app-loading>
+<app-verificacion-mail *ngIf="this.flagVerificacion" [mailUsr]="this.mailUsr"></app-verificacion-mail>
+

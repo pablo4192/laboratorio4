@@ -1,3 +1,4 @@
+import { Target } from '@angular/compiler';
 import { Component, OnInit, ViewChild, ElementRef, Renderer2 } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router';
@@ -18,6 +19,11 @@ export class RegistroComponent implements OnInit{
   profesional:Profesional|any;
   especialidades:especialidad[] = [];
   loading:boolean = false;
+  imagenes:any;
+  errorImgPaciente:boolean = false;
+  errorImgProfesional:boolean = false;
+  flagVerificacion:boolean = false;
+  mailUsr:string = '';
   
 
   @ViewChild('lista_especialidades') espRef:ElementRef|undefined;
@@ -50,6 +56,11 @@ export class RegistroComponent implements OnInit{
   public get especialidad() : any {
     return this.formulario.controls.especialidad;
   }
+
+  public get imagen() : any {
+    return this.formulario.controls.imagen;
+  }
+  
   
   public get contrasenia() : any {
     return this.formulario.controls.contrasenia;
@@ -128,48 +139,63 @@ export class RegistroComponent implements OnInit{
       return spaces ? {containSpaces : true} : null;
   }
 
+  //Ver si refactorizo haciendo 2 metodos mas chicos
   registrarse():void{
     let u = this.formulario.getRawValue();
-    this.loading = true;
+    this.mailUsr = u.mail;
     
     if(this.fs.esPaciente){
-      this.paciente = new Paciente(u.nombre, u.apellido, u.edad, u.dni, u.mail, u.contrasenia, u.obra_social, []);
-    
-      this.fs.registro(this.paciente)
-      .then(() => {
-        console.log('paciente registrado');
-        this.fs.addUsuario(this.paciente);
-        this.rt.navigate(['./home'])
+
+      if(!this.imagenes || this.imagenes && this.imagenes.files.length != 2){
+       this.errorImgPaciente = true;
+      }
+      else{
+        this.paciente = new Paciente(u.nombre, u.apellido, u.edad, u.dni, u.mail, u.contrasenia, u.obra_social);
         
-        setTimeout(() => {
-          this.loading = false;
-        }, 200);
-      
-      })
-      .catch((error) => {
-        this.loading = false;
-        console.log(error);
-      });
+        this.fs.registro(this.paciente)
+        .then(() => {
+          this.fs.addUsuario(this.paciente, this.imagenes.files);
+          this.fs.verificarMail();
+          this.flagVerificacion = true;
+
+          setTimeout(() => {
+            this.flagVerificacion = false;
+
+            this.fs.logout();
+            this.rt.navigate(['/login']);
+          }, 5000);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+      }
     }
     else{
-      this.profesional = new Profesional(u.nombre, u.apellido, u.edad, u.dni, u.mail, u.contrasenia, u.especialidad, []);
+  
+      if(!this.imagenes){
+        this.errorImgProfesional = true;
+      }
+      else{
+        this.profesional = new Profesional(u.nombre, u.apellido, u.edad, u.dni, u.mail, u.contrasenia, u.especialidad);
       
-      this.fs.registro(this.profesional)
-      .then(() => {
-        console.log('profesional registrado');
-        this.fs.addUsuario(this.profesional);
-        this.rt.navigate(['./home'])
-        
-        setTimeout(() => {
-          this.loading = false;
-        }, 200);
+        this.fs.registro(this.profesional)
+        .then(() => {
+          this.fs.addUsuario(this.profesional, this.imagenes.files);
+          this.fs.verificarMail();
+          this.flagVerificacion = true;
           
-      })
-      .catch((error) => {
-        this.loading = false;  
-        console.log(error)
-      });
-
+          setTimeout(() => {
+            this.flagVerificacion = false;
+            
+            this.fs.logout();
+            this.rt.navigate(['/login']);
+          }, 5000);
+        })
+        .catch((error) => {
+          
+          console.log(error)
+        });
+      }
     }
   }
 

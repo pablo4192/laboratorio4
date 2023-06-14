@@ -6,9 +6,8 @@ export abstract class Usuario {
     dni:string;
     mail:string;
     password:string;
-    imgsPerfil:any[];
 
-    constructor(nombre:string, apellido:string, edad:number, dni:string, mail:string, password:string, imgsPerfil:any[]){
+    constructor(nombre:string, apellido:string, edad:number, dni:string, mail:string, password:string){
        this.id = '';
        this.nombre = nombre;
        this.apellido = apellido;
@@ -16,7 +15,6 @@ export abstract class Usuario {
        this.dni = dni;
        this.mail = mail;
        this.password = password;
-       this.imgsPerfil = imgsPerfil;
     }
 
     abstract mostrar():void;

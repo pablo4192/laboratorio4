@@ -15,6 +15,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { OpenModalDirective } from './directives/open-modal.directive';
 import { ModalEspecialidadComponent } from './components/views/modal-especialidad/modal-especialidad.component';
 import { LoadingComponent } from './components/shared/loading/loading.component';
+import { VerificacionMailComponent } from './components/views/verificacion-mail/verificacion-mail.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { LoadingComponent } from './components/shared/loading/loading.component'
     RegistroComponent,
     OpenModalDirective,
     ModalEspecialidadComponent,
-    LoadingComponent
+    LoadingComponent,
+    VerificacionMailComponent
   ],
   imports: [
     BrowserModule,

@@ -23,7 +23,7 @@ form{
     
 }
 
-app-loading{
+app-loading, app-verificacion-mail{
     position: absolute;
     top: 0;
     left: 0;
@@ -31,4 +31,9 @@ app-loading{
     height: 100%;
     
 }
+
+app-verificacion-mail{
+    background-color:azure;
+}
+
 

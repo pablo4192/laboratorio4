@@ -1,6 +1,7 @@
 {
   "hosting": [
     {
+      "target": "clinica_online",
       "public": "dist/clinica_online",
       "ignore": [
         "firebase.json",
