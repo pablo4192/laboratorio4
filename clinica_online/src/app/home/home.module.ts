@@ -4,13 +4,12 @@ import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './components/views/home/home.component';
 
 
-
-
 @NgModule({
   declarations: [
     
   
-    HomeComponent
+    HomeComponent,
+           
   ],
   imports: [
     CommonModule,

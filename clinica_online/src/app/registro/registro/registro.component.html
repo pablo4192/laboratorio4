@@ -60,7 +60,7 @@
                 Mail invalido, por favor revise si es un mail existente! 
             </small>
         </div>
-        <div *ngIf="this.fs.esPaciente" class="form-group">
+        <div *ngIf="this.fs.registrarPaciente" class="form-group">
             <label for="obra_social">Obra social:</label>
             <input type="text" class="form-control" name="obra_social" placeholder="Ingrese obra social" formControlName="obra_social">
             <small class="invalid" 
@@ -72,27 +72,26 @@
                 La obra social tiene que ser alfanumerica!
             </small>
         </div>
-        <div *ngIf="!this.fs.esPaciente" class="form-group">
+        <div *ngIf="this.fs.registrarProfesional" class="form-group">
             <label for="especialidad">Especialidad:</label>
-            <select name="" id="" #lista_especialidades formControlName="especialidad">
-                <option value="" hidden></option>
-            </select>
+                <app-especialidad [recargarEspecialidades]="this.avisar_carga_especialidades" (especialidad_seleccionada)="manejarEventoEspecialidad($event)"></app-especialidad>
             <input type="button" class="btn btn-secondary btn-sm " value="Agregar especialidad" (click)="abrirModalEspecialidad()">
             <app-modal-especialidad [agregarEspecialidad]="this.agregarEspecialidad" (modalCerrado)="cerrarModalEspecialidad($event)"></app-modal-especialidad>
-            <small *ngIf="especialidad.errors?.required && especialidad.touched">
-                El campo especialidad es obligatorio!
+            <small *ngIf="this.errorEspecialidad">
+                Por favor escoja una especialidad. Si no la encuentra puede agregarla.
             </small>
         </div>
-        <div *ngIf="this.fs.esPaciente" class="form-group">
+
+        <div *ngIf="this.fs.registrarPaciente" class="form-group">
             <label for="img">Cargue 2 imagenes para su perfil:</label>
-            <input type="file" class="form-control-file" name="img" multiple accept="image/*" (change)="this.imagenes = $event.target">
+            <input type="file" class="form-control-file" name="img" multiple accept="image/*" (change)="this.imagenes = $event.target" #file>
             <small *ngIf="this.errorImgPaciente">
                 Debe subir 2 imagenes para el perfil!
             </small>
         </div>
-        <div *ngIf="!this.fs.esPaciente" class="form-group">
+        <div *ngIf="this.fs.registrarProfesional || this.fs.registrarAdmin" class="form-group">
             <label for="img">Imagen de perfil:</label>
-            <input type="file" class="form-control-file" name="img" accept="image/*" (change)="this.imagenes = $event.target" >
+            <input type="file" class="form-control-file" name="img" accept="image/*" (change)="this.imagenes = $event.target" #file>
             <small *ngIf="this.errorImgProfesional">
                 Debe subir 1 imagen para su perfil!
             </small>
@@ -126,6 +125,9 @@
             </button>
     </form>
 </div>
-<app-loading *ngIf="this.loading"></app-loading>
 <app-verificacion-mail *ngIf="this.flagVerificacion" [mailUsr]="this.mailUsr"></app-verificacion-mail>
+<small *ngIf="altaExitosa">
+    Alta exitosa, se mail de verificacion al usuario.
+</small>
+
 

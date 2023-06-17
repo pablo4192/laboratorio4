@@ -8,13 +8,11 @@ import { FirestoreService } from 'src/app/services/firestore.service';
   styleUrls: ['./verificacion-mail.component.scss']
 })
 export class VerificacionMailComponent {
-  
+
   @Input() mailUsr:string = '';
   
   constructor(private fs:FirestoreService,
               private rt:Router){
 
   }
-
-
 }

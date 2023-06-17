@@ -8,6 +8,7 @@ import { FirestoreService } from 'src/app/services/firestore.service';
   styleUrls: ['./modal-especialidad.component.scss']
 })
 export class ModalEspecialidadComponent {
+
   @Input() agregarEspecialidad:boolean = false;
   @Output() modalCerrado = new EventEmitter<boolean>();
   @ViewChild('modalRef') modalRef:ElementRef|undefined;
@@ -46,6 +47,7 @@ export class ModalEspecialidadComponent {
       this.exito = true;
       setTimeout(() => {
         this.modalCerrado.emit(true);
+        this.exito = false;
       }, 1500);
     }
     else{
@@ -53,5 +55,4 @@ export class ModalEspecialidadComponent {
     }
     
   }
-  
 }

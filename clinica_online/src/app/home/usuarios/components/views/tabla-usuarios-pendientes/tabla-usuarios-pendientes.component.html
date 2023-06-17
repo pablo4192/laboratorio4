@@ -1,0 +1,3 @@
+<div *ngFor="let usr of this.users_sin_autorizacion" >
+    id: {{usr.id}} - Mail: {{usr.mail}} <div (click)="autorizarAcceso(usr)" style="background-color: tomato;">Autorizar acceso</div>
+</div>

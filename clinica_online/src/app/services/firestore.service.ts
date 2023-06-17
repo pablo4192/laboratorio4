@@ -19,9 +19,16 @@ export interface especialidad{
 
 export class FirestoreService {
 
+  esAdmin:boolean = false;
   esPaciente:boolean = false; 
+  esProfesional:boolean = false;
+
+  registrarPaciente:boolean = false;
+  registrarProfesional:boolean = false;
+  registrarAdmin:boolean = false;
+
   imagenes:string[] = [];
-  idUsr:string = ''; //Ver!
+  usr_en_sesion:object|undefined;
 
   constructor(private fire:Firestore,
               private auth:Auth,
@@ -78,11 +85,10 @@ export class FirestoreService {
    * @param imagenes array de files
    */
   private addPaciente(paciente:Paciente, imagenes:any){
-    const usrRef = collection(this.fire, 'pacientes');
+    const usrRef = collection(this.fire, 'usuarios');
     
     addDoc(usrRef, {})
     .then((refDoc) => {
-      this.idUsr = refDoc.id;
 
       setDoc(refDoc, {
         id: refDoc.id,
@@ -109,7 +115,7 @@ export class FirestoreService {
    * @param imagenes array de files
    */
   private addProfesional(profesional:Profesional, imagenes:any):void{
-    const usrRef = collection(this.fire, 'profesionales');
+    const usrRef = collection(this.fire, 'usuarios');
     addDoc(usrRef, {})
     .then((refDoc) => {
       setDoc(refDoc, {
@@ -131,9 +137,29 @@ export class FirestoreService {
     });
   }
 
-  private addAdministrador(administrador:Administrador, imagenes:any):void{
+  private addAdministrador(admin:Administrador, imagenes:any):void{
 
-    //Codigo...
+    const usrRef = collection(this.fire, 'usuarios');
+    
+    addDoc(usrRef, {})
+    .then((refDoc) => {
+
+      setDoc(refDoc, {
+        id: refDoc.id,
+        nombre: admin.nombre,
+        apellido: admin.apellido,
+        edad: admin.edad,
+        dni: admin.dni,
+        mail: admin.mail,
+        password: admin.password,
+      });
+
+      for(let i = 0; i < imagenes.length; i++){
+        this.uploadImg(refDoc.id, imagenes[i]);
+      }
+
+    });
+
   }
 
   /**
@@ -178,8 +204,8 @@ export class FirestoreService {
   /**
    * Descarga las imagenes del storage 
    */
-  getImages(){
-    const imagesRef = ref(this.st, `${this.idUsr}`);
+  getImages(idUsr:string){
+    const imagesRef = ref(this.st, `${idUsr}`);
     
     listAll(imagesRef)
     .then(async (response) => {
@@ -197,6 +223,15 @@ export class FirestoreService {
     
     const collectionRef = collection(this.fire, `${nombreColeccion}`);
     let q = query(collectionRef, where('mail', '==', mail));
+
+    return getDocs(q);
+    
+  }
+
+  getUsuariosSinAutorizacion(){
+    
+    const collectionRef = collection(this.fire, 'usuarios');
+    let q = query(collectionRef, where('autorizado', '==', false));
 
     return getDocs(q);
     

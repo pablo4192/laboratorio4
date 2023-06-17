@@ -5,6 +5,7 @@ import { HomeComponent } from './components/views/home/home.component';
 
 const routes: Routes = [
   {path:'', component:HomeComponent},
+  {path:'usuarios', loadChildren: () => import('./usuarios/usuarios.module').then((m) => m.UsuariosModule)},
 ];
 
 @NgModule({

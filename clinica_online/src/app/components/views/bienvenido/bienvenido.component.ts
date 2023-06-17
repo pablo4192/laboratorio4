@@ -14,7 +14,8 @@ export class BienvenidoComponent {
     }
 
     ngOnInit():void{
-      this.fs.esPaciente = false;
+      this.fs.registrarPaciente = false;
+      this.fs.registrarProfesional = false;
     }
 
     abrirOpciones():void{
@@ -22,7 +23,11 @@ export class BienvenidoComponent {
     }
 
     esPaciente():void{
-      this.fs.esPaciente = true;
+      this.fs.registrarPaciente = true;
+    }
+
+    esProfesional():void{
+      this.fs.registrarProfesional = true;
     }
 }
  

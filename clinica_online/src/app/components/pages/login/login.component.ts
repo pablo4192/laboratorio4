@@ -1,5 +1,6 @@
 import { Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
-import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
+import { UserCredential } from '@angular/fire/auth';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router';
 import { FirestoreService } from 'src/app/services/firestore.service';
 
@@ -15,7 +16,6 @@ export class LoginComponent {
   noExiste:boolean = false;
   noAutorizado:boolean = false;
   loading:boolean= false;
-  autoCompletado:boolean = false;
   textoAutorizacion:string = '';
   
   @ViewChild('inputUsr') inputUsrRef:ElementRef|undefined;
@@ -44,97 +44,101 @@ export class LoginComponent {
   }
 
   /**
-   * Realiza el login del usuario verificando si esta autorizado para ingresar al sistema
+   * Realiza el login al sistema
    */
   Ingresar():void{
     let usuario = this.formulario.getRawValue();
+    this.loading = true;
     
     this.fs.login(usuario)
           .then((response) => {
-  
-            if(response.user.emailVerified){
-              this.fs.getUsuarioPorMail(usuario.mail, 'profesionales')
-              .then((docs) => {
-                
-                if(docs.empty){
-                  this.rt.navigate(['/home']);
-                  console.log('El usuario es paciente, mail verificado, puede ingresar')
-                }
-                else{
-                  docs.forEach((d) => {
-                    if(d.data()['autorizado']){
-                      this.rt.navigate(['/home']);
-                      console.log('El usuario es profesional, mail verificado y autorizado por admin, puede ingresar');
-                    }
-                    else{
-                      this.noAutorizado = true;
-                      console.log('El usuario es profesional, tiene mail verificado pero no esta autorizado por el admin');
-                      this.textoAutorizacion = 'No es posible ingresar al sistema, por el momento su cuenta no ha sido autorizada por el administrador';
-                    }
-                  })
-                }
-
-              })
-
-            }
-            else{
-              this.noAutorizado = true;
-              console.log('El usuario no verifico el mail');
-              this.textoAutorizacion = 'Le hemos enviado un mail a su correo, por favor verifique su identidad haciendo click en el enlace del mismo.'
-            }
-
+            this.verificarUsuario(usuario, response);
           })
           .catch((error) => {
             this.loading = false;
             this.noExiste = true;
             console.log(error);
           });
-
-    // this.fs.getUsuarioPorMail(usuario.mail, 'profesionales')
-    // .then((docs) => {
-    //   docs.forEach((d) => {
-    //     if(d.data()['autorizado']){
-    //       this.loading = true;
-
-    //       this.fs.login(usuario)
-    //       .then((response) => {
-    //         console.log(response);
-
-    //         if(response.user.emailVerified){
-    //           this.rt.navigate(['/home']);
-    //         }
-    //         else{
-    //           console.log('El usuario no verifico el mail');
-    //         }
-
-    //       })
-    //       .catch((error) => {
-    //         this.loading = false;
-    //         this.noExiste = true;
-    //         console.log(error);
-    //       });
-        
-    //     }
-    //     else{
-    //       this.noAutorizado = true;
-    //     }
-
-    //   });
-    // })
-    // .catch((error) => console.log(error));
   }
 
   /**
-   * Autocompleta los campos para realizar el login al sistema
+   * Verifica acceso o no el ingreso al sistema.
+   * a) Si es paciente: Que haya verificado su mail al momento de registrarse.
+   * b) Si es profesional: Verificación de mail y que un administrador haya habilitado su cuenta.
+   * @param usuario 
+   * @param respuesta 
+   */
+  private verificarUsuario(usuario:any, respuesta:UserCredential){
+    
+    if(respuesta.user.emailVerified){
+      this.fs.getUsuarioPorMail(usuario.mail, 'usuarios')
+      .then((docs) => {
+        this.loading = false;
+
+        if(docs.empty){
+          this.noExiste = true;
+          console.log('No se encontro en la base el mail suministrado');
+        }
+        else{
+          docs.forEach((d) => {
+            if(d.data()['obra_social']){
+              //Es paciente
+              this.fs.esPaciente = true;
+              this.fs.usr_en_sesion = d.data();
+
+              this.rt.navigate(['/home']);
+              console.log('El usuario es paciente, tiene mail verificado, puede ingresar');
+            }
+            else if(d.data()['especialidad']){
+              //Es un profesional
+              if(d.data()['autorizado']){
+                this.fs.esProfesional = true;
+                this.fs.usr_en_sesion = d.data();
+
+                this.rt.navigate(['/home']);
+                console.log('El usuario es profesional, mail verificado y autorizado por admin, puede ingresar');
+              }
+              else{  
+                this.noAutorizado = true;
+                console.log('El usuario es profesional, tiene mail verificado pero no esta autorizado por el admin');
+                this.textoAutorizacion = 'No es posible ingresar al sistema, por el momento su cuenta no ha sido autorizada por el administrador';
+              }
+            }
+            else{
+              //Es un administrativo
+              this.fs.esAdmin = true;
+              this.fs.usr_en_sesion = d.data();
+              
+              this.rt.navigate(['/home']);
+              console.log('El usuario Administrativo, mail verificado, puede ingresar');
+            }
+            
+          })
+        }
+
+      })
+      .catch((error) => {
+        this.loading = false;
+        console.log(error);
+      });
+    }
+    else{
+      this.loading = false;
+      this.noAutorizado = true;
+      console.log('El usuario no verifico el mail');
+      this.textoAutorizacion = 'Le hemos enviado un mail a su correo, por favor verifique su identidad haciendo click en el enlace del mismo.'
+    }
+  }
+
+  /**
+   * Autocompleta los campos con mail y contraseña de un usuario registrado para realizar el login
    */
   public autoCompletarLogin(){  
-    this.autoCompletado = true;
+    this.r2.setProperty(this.inputUsrRef?.nativeElement, 'value', 'gekek35907@akoption.com');
+    this.r2.setProperty(this.inputPassRef?.nativeElement, 'value', 'aaa000');
 
-    this.r2.setProperty(this.inputUsrRef?.nativeElement, 'value', 'estanguet@gmail.com');
-    this.r2.setProperty(this.inputPassRef?.nativeElement, 'value', 'bbb000');
-
-    this.formulario.controls.mail.value = 'estanguet570@gmail.com';
-    this.formulario.controls.password.value = 'bbb000';
+    this.formulario.controls.mail.value = 'gekek35907@akoption.com';
+    this.formulario.controls.password.value = 'aaa000';
 
     this.formulario.status = 'VALID';
   }
