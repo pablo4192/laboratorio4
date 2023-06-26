@@ -1,0 +1,53 @@
+<div class="contenedor">
+    <section>
+        <div>
+            <label for="especialidad">Seleccione especialidad</label>
+            <app-especialidad (especialidad_seleccionada)="getProfesionales($event)" name="especialidad"></app-especialidad>
+        </div>
+        <div class="seleccion_opciones">
+            <label for="profesional">Seleccione profesional</label>
+            <div name="profesional">
+                <div *ngFor="let p of this.profesionales" (click)="asignarProfesional(p)" >
+                    {{p.nombre}} {{p.apellido}}
+                </div>
+            </div>
+        </div>
+        <div class="seleccion_opciones">
+            <label for="fecha">Fecha</label>
+            <div>
+                <div *ngFor="let f of this.fechas" (click)="asignarFecha(f)">
+                    {{f | date:'dd/MM/yyyy'}}
+                </div>
+            </div>
+        </div>
+        <div class="seleccion_opciones">
+            <label for="horarios">Horarios</label>
+            <div name="horarios">
+                <div *ngFor="let h of this.horarios" (click)="asignarHorario(h)">
+                    {{h}}
+                </div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <form>
+            <div class="form-group">
+                <label for="nombre_especialidad">Especialidad seleccionada:</label>
+                <input type="text" name="nombre_especialidad" class="form-control" [ngModel]="especialidad_seleccionada" readonly>
+            </div>
+            <div class="form-group">
+                <label for="nombre_profesional">Profesional seleccionado:</label>
+                <input type="text" name="nombre_profesional" class="form-control" [ngModel]="nombre_apellido_prof" readonly>
+            </div>
+            <div class="form-group">
+                <label for="fecha_turno">Fecha seleccionada:</label>
+                <input type="text" name="fecha_turno" class="form-control" [ngModel]="fecha_seleccionada" readonly>
+            </div>
+            <div class="form-group">
+                <label for="horario_turno">Horario seleccionado:</label>
+                <input type="text" name="horario_turno" class="form-control" [ngModel]="horario_seleccionado" readonly>
+            </div>
+            <button class="btn btn-primary" (click)="confirmarTurno()">Confirmar turno</button>
+        </form>
+    </section>
+</div>

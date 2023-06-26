@@ -27,6 +27,7 @@ import { EspecialidadComponent } from './components/views/especialidad/especiali
 
   exports: [
     RegistroComponent,
+    EspecialidadComponent,
     LoadingComponent,
     VerificacionMailComponent,
     ModalEspecialidadComponent

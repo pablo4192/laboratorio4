@@ -1,3 +1,5 @@
+import { Tipo } from "../enums/tipo";
+
 export abstract class Usuario {
     id:string;
     nombre:string;
@@ -6,6 +8,7 @@ export abstract class Usuario {
     dni:string;
     mail:string;
     password:string;
+    tipo:Tipo|undefined;
 
     constructor(nombre:string, apellido:string, edad:number, dni:string, mail:string, password:string){
        this.id = '';

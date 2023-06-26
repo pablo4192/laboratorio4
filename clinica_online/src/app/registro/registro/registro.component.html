@@ -1,4 +1,4 @@
-<div id="contenedor">
+<div id="contenedor" #contenedor> 
     <form [formGroup]="formulario" (ngSubmit)="registrarse()">
         <div class="form-group" >
             <label for="nombre">Nombre:</label>
@@ -126,8 +126,8 @@
     </form>
 </div>
 <app-verificacion-mail *ngIf="this.flagVerificacion" [mailUsr]="this.mailUsr"></app-verificacion-mail>
-<small *ngIf="altaExitosa">
-    Alta exitosa, se mail de verificacion al usuario.
-</small>
+<p *ngIf="altaExitosa" id="altaExitosa">
+    <img src="./../../../assets/tildeVerde.png" alt="tildeVerde.png"> Alta exitosa, se envio mail de verificacion al usuario. 
+</p>
 
 

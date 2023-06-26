@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Firestore, addDoc, setDoc, collection, collectionData, query, getDocs, where } from '@angular/fire/firestore';
+import { Firestore, addDoc, setDoc, collection, collectionData, query, getDocs, where, updateDoc, doc } from '@angular/fire/firestore';
 import { Usuario } from '../entidades/usuario';
 import { Paciente } from '../entidades/paciente';
 import { Profesional } from '../entidades/profesional';
@@ -28,7 +28,7 @@ export class FirestoreService {
   registrarAdmin:boolean = false;
 
   imagenes:string[] = [];
-  usr_en_sesion:object|undefined;
+  usr_en_sesion:Paciente|Profesional|Administrador|undefined;
 
   constructor(private fire:Firestore,
               private auth:Auth,
@@ -99,6 +99,8 @@ export class FirestoreService {
         mail: paciente.mail,
         obra_social: paciente.obra_social,
         password: paciente.password,
+        turnos: paciente.turnos,
+        tipo: paciente.tipo
       });
 
       for(let i = 0; i < imagenes.length; i++){
@@ -127,7 +129,9 @@ export class FirestoreService {
         mail: profesional.mail,
         especialidad: profesional.especialidad,
         password: profesional.password,
-        autorizado: profesional.autorizado
+        turnos: profesional.turnos,
+        autorizado: profesional.autorizado,
+        tipo: profesional.tipo
       });
 
       for(let i = 0; i < imagenes.length; i++){
@@ -152,6 +156,7 @@ export class FirestoreService {
         dni: admin.dni,
         mail: admin.mail,
         password: admin.password,
+        tipo: admin.tipo
       });
 
       for(let i = 0; i < imagenes.length; i++){
@@ -228,6 +233,13 @@ export class FirestoreService {
     
   }
 
+  getUsuarioPorId(id:string){
+    const collectionRef = collection(this.fire, 'usuarios');
+    let q = query(collectionRef, where('id', '==', id));
+
+    return getDocs(q);
+  }
+
   getUsuariosSinAutorizacion(){
     
     const collectionRef = collection(this.fire, 'usuarios');
@@ -237,7 +249,21 @@ export class FirestoreService {
     
   }
 
+  getProfesionalesPorEspecialidad(especialidad:string){
+    
+    const collectionRef = collection(this.fire, 'usuarios');
+    let q = query(collectionRef, where('especialidad', '==', `${especialidad}`));
+
+    return getDocs(q);
+    
+  }
+
   verificarMail(){
     return sendEmailVerification(this.auth.currentUser as User);
+  }
+
+  autorizarUsuario(id:string, esta_autorizado:boolean):Promise<any>{ 
+    const usrRef = doc(this.fire, `usuarios/${id}`);
+    return updateDoc(usrRef, {autorizado: esta_autorizado});
   }
 }

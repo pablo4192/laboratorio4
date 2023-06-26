@@ -1,8 +1,15 @@
-<div id="contenedor">
-    <a routerLink="usuario-alta">ALTA USUARIO</a>
+<div class="contenedor">
+    <div class="links">
+        <a routerLink="usuario-alta">ALTA USUARIO</a>
+        <a routerLink="#"></a>
+        <a routerLink="#">Link</a>
+        <a routerLink="#">Link</a>
+    </div>
     <div>
-        <p>Usuarios pendientes de autorizacion</p>
-        <app-tabla-usuarios-pendientes></app-tabla-usuarios-pendientes>
+        <div class="sinAutorizacion">
+            <p>Usuarios pendientes de autorizacion</p>
+            <app-tabla-usuarios-pendientes (emitir_usuario)="autorizarAcceso($event)"></app-tabla-usuarios-pendientes>
+        </div>
     </div>
 </div>
 

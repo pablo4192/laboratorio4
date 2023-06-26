@@ -1,96 +1,100 @@
 *{
     box-sizing: border-box;
-    padding: 0;
     margin: 0;
+    padding: 0;
     letter-spacing: 2px;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
-#contenedor{
-    position: relative;
-    background-color: #ddd;
+.contenedor{
     width: 100vw;
     height: 100vh;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: flex-start;
-    align-items: center;
-    background: linear-gradient(to right, rgba(0,250,250,.1), #fff);
+    align-items: flex-end;
+    position: relative;
+
+    section{
+        border-bottom: 1px solid rgb(8, 150, 220);
+        width: 65%;
+        height: 30vh;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: flex-end;
+        font-size: 1.5rem;
+        font-weight: bold;
+        padding-bottom: 20px;
+        margin-right: 50px;
+        
+        div:hover{
+            cursor: pointer;
+        }
+
+        a{
+            text-decoration: none;
+            color: black;
+        }
+    }
 }
 
-#contenedor>div{
+.contenedor>div:first-child{
+    width: 100%;
+    height: 35%;
+    background: linear-gradient(to bottom, rgb(8, 190, 190), #fff);
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
     
-    width: 25%;
-    height: 45%;
+  
+    p{
+        color: #eee;
+        font-size: 3rem;
+        width: 53%;
+    }
+}
+
+#favicon{
+    position: absolute;
+    top: 25%;
+    left: 5%;
+    width: 400px;
+}
+
+#tipoUsr{
+    width: 34%;
+    height: 18vh;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    align-items: flex-end;
-}
-
-#contenedor>div:nth-child(2){
-    height: 18%;
-    width: 20%;
-    align-items: flex-start;
-    justify-content: flex-start;
-    animation: 2s ease 1 fxOpcionesRegistro;
+    align-items: center;
     
-    div{
-        
-        width: 100%;
-        background-color: #eef;
-    }
-
-    a{
-        text-decoration: none;
-        font-size: 1.3rem;
-        color: black;
-        width: 100%;
-        margin-bottom: 10px;
-        
-    }
-}
-
-#registrarse, #ingresar{
     
-    width: 80%;
-    font-size: 1.5rem;
-    text-align: center;
 
     a{
         text-decoration: none;
         color: black;
-    }
-
-}
-
-#registrarse:hover, #ingresar:hover{
-    cursor: pointer;
-}
-
-#registrarse{
-    
-}
-
-#ingresar{
-   
-
-}   
-
-#imagen{
-
-    position: absolute;
-    right: 10%;
-    top: 20%;
-
-    img{
-        width: 700px;
-        height: 500px;
+        border-bottom: 1px solid #ddd;
+        border-radius: 5px;
+        width: 80%;
+        text-align: center;
+        padding: 5px;
     }
 }
 
+.tipoUsuario{
+    animation: 1s ease 1 fxTipoUsuario;
+    font-size: 1.3rem;
+    transition: all .3s;
+    border-radius: 5px;
+}
 
+.tipoUsuario:hover{
+    background-color: azure;
+}
 
-@keyframes fxOpcionesRegistro{
+@keyframes fxTipoUsuario{
     from{
         opacity: 0;
     }

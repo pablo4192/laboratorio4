@@ -1,0 +1,30 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.contenedor{
+    
+    div{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        align-items: center;
+        height: 5vh;
+        margin-bottom: 10px;
+    
+        input{
+            width: 15%;
+            height: 90%;
+            border: none;
+            background-color: rgb(28, 28, 28);
+            color: #fff;
+        }
+
+        input:hover{
+            background-color: rgb(56, 56, 56);
+        }
+    }
+
+}

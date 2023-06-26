@@ -1,13 +1,16 @@
-<div id="contenedor">
+<div class="contenedor">
     <div>
-        <div id="registrarse" (click)="abrirOpciones()">
-            Registrarse
-        </div>
-        <div id="ingresar">
-            <a routerLink="login">Ingresar</a>
-        </div>
+        <p>CLINICA DEL OESTE</p>
     </div>
-    <div *ngIf="flagRegistro">
+    <section>
+        <div>
+            <a routerLink="login">INGRESAR</a>
+        </div>
+        <div (click)="abrirOpciones()">
+            REGISTRARSE
+        </div>
+    </section>
+    <div id="tipoUsr" *ngIf="flagRegistro">
         <a routerLink="registro">
             <div class="tipoUsuario" (click)="esPaciente()">
                 Paciente
@@ -20,8 +23,5 @@
         </a>
     </div>
 </div>
-<div id="imagen">
-    <img src="./../../../../assets/doctores.jpg" alt="doctores.jpg">
-</div>
-
-
+<img id="favicon" src="./../../../../assets/favicon.png" alt="favicon.png">
+ 

@@ -1,3 +1,6 @@
-<div *ngFor="let usr of this.users_sin_autorizacion" >
-    id: {{usr.id}} - Mail: {{usr.mail}} <div (click)="autorizarAcceso(usr)" style="background-color: tomato;">Autorizar acceso</div>
+<div id="contenedor">
+    <div class="datosUsr" *ngFor="let usr of this.users_sin_autorizacion" >
+        <div>id: {{usr.id}} - Nombre: {{usr.nombre}} {{usr.apellido}} - Mail: {{usr.mail}}</div> 
+        <input type="button" (click)="emitirUsuario($event, usr)" value="Autorizar acceso">
+    </div>
 </div>

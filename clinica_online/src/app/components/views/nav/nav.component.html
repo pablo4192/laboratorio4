@@ -1,3 +1,9 @@
 <div id="contenedor">
-    <a  *ngIf="this.fs.esAdmin" routerLink="home/usuarios">USUARIOS</a>
+    <div id="links">
+        <a *ngIf="this.fs.esAdmin" routerLink="home/usuarios">USUARIOS</a>
+        <a routerLink="home/turnos">TURNOS</a>
+    </div>
+    <div id="logout">
+        <input type="button" value="Logout" (click)="this.logout()">
+    </div>
 </div>

@@ -17,17 +17,7 @@ export class HomeComponent {
 
   }
 
-  logout():void{
-    this.fs.logout()
-    .then(() => {
-      
-      //Para ocultar nav cuando se realiza logout
-      this.fs.usr_en_sesion = undefined;
-
-
-      this.rt.navigate(['/login']);
-    });
-  }
+  
 
 
 }

@@ -6,20 +6,26 @@
 
 #contenedor{
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     min-height: 100vh;
+    position: relative;
+    background-repeat: no-repeat;
+    background-position: right;
+    background-size: 80% 100%;
+
     position: relative;
 }
 
 form{
     width: 40vw;
-    height: 95vh;
-    padding: 20px;
-    background-color: #ddd;
+    height: 100vh;
+    padding: 30px 60px;
+    background-color: rgb(240, 240, 240);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    border-right: 4px solid #fff;
     
 } 
 
@@ -34,6 +40,22 @@ app-loading, app-verificacion-mail{
 
 app-verificacion-mail{
     background-color:azure;
+}
+
+#altaExitosa{
+    color: rgb(5, 198, 5);
+    font-size: 1.2rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    padding: 10px 20px;
+    background-color: #eee;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(240,240,240,.5);
+
+    img{
+        width: 30px;
+    }
 }
 
 

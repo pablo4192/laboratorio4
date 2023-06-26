@@ -22,7 +22,7 @@ export class EspecialidadComponent implements OnChanges {
   }
 
   ngOnInit():void{
-    
+    this.cargarEspecialidades();
   }
 
   ngOnChanges(changes:SimpleChanges):void{

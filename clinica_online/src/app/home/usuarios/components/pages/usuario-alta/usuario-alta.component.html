@@ -1,7 +1,9 @@
-<div id="contenedor">
-    <input type="button" value="Alta Paciente" (click)="altaPaciente()">
-    <input type="button" value="Alta Profesional" (click)="altaProfesional()">
-    <input type="button" value="Alta Administrador" (click)="altaAdministrador()">
+<div class="contenedor">
+    <div>
+        <input type="button" value="Alta Paciente" (click)="altaPaciente()">
+        <input type="button" value="Alta Profesional" (click)="altaProfesional()">
+        <input type="button" value="Alta Administrador" (click)="altaAdministrador()">
+    </div>
     <app-registro [cambiarValidaciones]="this.avisar_cambio_validaciones" *ngIf="this.abrirRegistro"></app-registro>
 </div>
 

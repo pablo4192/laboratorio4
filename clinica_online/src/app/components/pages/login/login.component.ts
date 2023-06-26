@@ -2,6 +2,9 @@ import { Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
 import { UserCredential } from '@angular/fire/auth';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router';
+import { Administrador } from 'src/app/entidades/administrador';
+import { Paciente } from 'src/app/entidades/paciente';
+import { Profesional } from 'src/app/entidades/profesional';
 import { FirestoreService } from 'src/app/services/firestore.service';
 
 
@@ -81,19 +84,25 @@ export class LoginComponent {
         }
         else{
           docs.forEach((d) => {
-            if(d.data()['obra_social']){
-              //Es paciente
+            if(d.data()['tipo'] == 'paciente'){
+            
               this.fs.esPaciente = true;
-              this.fs.usr_en_sesion = d.data();
+              this.fs.esProfesional = false;
+              this.fs.esAdmin = false;
+
+              this.fs.usr_en_sesion = d.data() as Paciente; 
 
               this.rt.navigate(['/home']);
               console.log('El usuario es paciente, tiene mail verificado, puede ingresar');
             }
-            else if(d.data()['especialidad']){
-              //Es un profesional
-              if(d.data()['autorizado']){
+            else if(d.data()['tipo'] == 'profesional'){
+             
+              if(d.data()['autorizado']){ 
                 this.fs.esProfesional = true;
-                this.fs.usr_en_sesion = d.data();
+                this.fs.esPaciente = false;
+                this.fs.esAdmin = false;
+
+                this.fs.usr_en_sesion = d.data() as Profesional;
 
                 this.rt.navigate(['/home']);
                 console.log('El usuario es profesional, mail verificado y autorizado por admin, puede ingresar');
@@ -105,9 +114,12 @@ export class LoginComponent {
               }
             }
             else{
-              //Es un administrativo
+              
               this.fs.esAdmin = true;
-              this.fs.usr_en_sesion = d.data();
+              this.fs.esPaciente = false;
+              this.fs.esProfesional = false;
+
+              this.fs.usr_en_sesion = d.data() as Administrador;
               
               this.rt.navigate(['/home']);
               console.log('El usuario Administrativo, mail verificado, puede ingresar');
@@ -134,11 +146,11 @@ export class LoginComponent {
    * Autocompleta los campos con mail y contraseña de un usuario registrado para realizar el login
    */
   public autoCompletarLogin(){  
-    this.r2.setProperty(this.inputUsrRef?.nativeElement, 'value', 'gekek35907@akoption.com');
-    this.r2.setProperty(this.inputPassRef?.nativeElement, 'value', 'aaa000');
+    this.r2.setProperty(this.inputUsrRef?.nativeElement, 'value', 'sifek22374@akoption.com');
+    this.r2.setProperty(this.inputPassRef?.nativeElement, 'value', 'ppp000');
 
-    this.formulario.controls.mail.value = 'gekek35907@akoption.com';
-    this.formulario.controls.password.value = 'aaa000';
+    this.formulario.controls.mail.value = 'sifek22374@akoption.com';
+    this.formulario.controls.password.value = 'ppp000';
 
     this.formulario.status = 'VALID';
   }

@@ -14,6 +14,7 @@ import { FirestoreService } from 'src/app/services/firestore.service';
 export class RegistroComponent implements OnChanges{
 
   @ViewChild('file') fileRef:ElementRef|undefined;
+  @ViewChild('contenedor') contenedorRef:ElementRef|undefined;
   @Input() cambiarValidaciones:boolean = false;
 
   agregarEspecialidad:boolean = false;
@@ -96,6 +97,16 @@ export class RegistroComponent implements OnChanges{
     }
   }
 
+  ngAfterViewInit():void{
+    if(this.fs.registrarPaciente){
+      this.r2.setStyle(this.contenedorRef?.nativeElement, 'background-image', 'url("./../../../assets/fondo_registro_pacientes.jpg")');
+      
+    }
+    else{
+      this.r2.setStyle(this.contenedorRef?.nativeElement, 'background-image', 'url("./../../../assets/fondo_registro_profesionales.jpg")');
+    }
+  }
+
   ngOnChanges(changes: SimpleChanges): void {
     this.formulario = this.fb.group({
       'nombre' : ['', [Validators.required, Validators.pattern('^[a-zA-Z]{1,20}$')]],
@@ -109,7 +120,27 @@ export class RegistroComponent implements OnChanges{
 
     if(this.fs.registrarPaciente){
       this.formulario.addControl('obra_social', new FormControl('', [Validators.required, Validators.pattern('^[a-zA-Z0-9 ]{1,20}$')]));
+      
+      setTimeout(() => {
+        this.r2.setStyle(this.contenedorRef?.nativeElement, 'background-image', 'url("./../../../assets/fondo_registro_pacientes.jpg")');
+      }, );
+
     }
+    else if(this.fs.registrarProfesional){
+
+      setTimeout(() => {
+        this.r2.setStyle(this.contenedorRef?.nativeElement, 'background-image', 'url("./../../../assets/fondo_registro_profesionales.jpg")');
+      }, );
+
+    }
+    else{
+
+      setTimeout(() => {
+        this.r2.setStyle(this.contenedorRef?.nativeElement, 'background-image', 'url("./../../../assets/fondo_registro_admin.jpg")');
+      }, );
+
+    }
+
   }
  
   abrirModalEspecialidad(){

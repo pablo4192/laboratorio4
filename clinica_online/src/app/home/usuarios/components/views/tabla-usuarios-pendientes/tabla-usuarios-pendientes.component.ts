@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { Usuario } from 'src/app/entidades/usuario';
 import { FirestoreService } from 'src/app/services/firestore.service';
 
@@ -10,6 +10,9 @@ import { FirestoreService } from 'src/app/services/firestore.service';
 export class TablaUsuariosPendientesComponent {
 
   users_sin_autorizacion:Usuario[] = [];
+  @Output() emitir_usuario = new EventEmitter<Usuario>();
+
+  
 
   constructor(private fs:FirestoreService){
 
@@ -32,7 +35,8 @@ export class TablaUsuariosPendientesComponent {
     .catch((error) => console.log(error));
   }
 
-  autorizarAcceso(usuario:Usuario):void{
-    console.log(usuario);
+  emitirUsuario($event:any, usuario:Usuario):void{
+    $event.target.value = 'Autorizado';
+    this.emitir_usuario.emit(usuario);
   }
 }
